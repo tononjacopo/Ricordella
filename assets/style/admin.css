@@ -1,0 +1,112 @@
+/* Admin panel specific styles */
+
+.users-table-container {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--light-bg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.users-table th,
+.users-table td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.users-table th {
+    background-color: var(--primary);
+    color: white;
+}
+
+.users-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.users-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.users-table .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.users-table .btn {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+}
+
+.users-table .btn.edit {
+    background-color: var(--info);
+    color: white;
+}
+
+.users-table .btn.add {
+    background-color: var(--success);
+    color: white;
+}
+
+.users-table .btn.remove {
+    background-color: var(--warning);
+    color: white;
+}
+
+.users-table .btn.delete {
+    background-color: var(--danger);
+    color: white;
+}
+
+.users-table .btn:hover {
+    opacity: 0.9;
+}
+
+/* Admin form */
+.admin-form-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.admin-form {
+    background-color: var(--light-bg);
+    padding: 2rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.user-stats {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--light-bg);
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.note {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 0.3rem;
+}
+
+@media (max-width: 768px) {
+    .users-table th,
+    .users-table td {
+        padding: 0.5rem;
+    }
+
+    .users-table .actions {
+        flex-direction: column;
+    }
+}

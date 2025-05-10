@@ -1,0 +1,218 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: url("../img/wallpaper-blur.png") center/cover fixed;
+}
+
+.vid-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.bgvid.back {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+}
+
+.inner {
+    position: absolute;
+}
+
+.inner-container {
+    width: 400px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    border-radius: 7px;
+}
+
+.box {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.24);
+    padding: 30px 0;
+    border-radius: 7px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+.box form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.box h1 {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 30px;
+    color: #2f2d2d;
+    font-weight: 700;
+}
+
+.box input {
+    display: block;
+    width: 300px;
+    margin: 20px auto;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    border-radius: 7px;
+    border: 0;
+}
+
+.accept-terms {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/*selected checkbox*/
+.accept-terms input {
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/* Checkbox Styles */
+.accept-terms input {
+    display: none;
+}
+
+.accept-terms label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.accept-terms input + label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid #b6aba3;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.accept-terms input:checked + label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.accept-terms input:checked + label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: #2f2d2d;
+    border: 2px solid #2f2d2d;
+    border-radius: 4px;
+    box-shadow: 0 0 7px #f3fd15;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.accept-terms input:checked + label::after {
+    content: '✔';
+    position: absolute;
+    left: 2.5px;
+    top: 47.5%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: yellow;
+}
+/*finish checkbox*/
+
+.login {
+    text-decoration: none;
+    color: #f3fd15;
+}
+
+input::placeholder {
+    color: #b6aba3;
+}
+
+.signup {
+    color: #f3fd15 !important;
+    text-decoration: none;
+}
+
+.box input:focus,
+.box input:active,
+.box button:focus,
+.box button:active {
+    outline: none;
+}
+.box input:focus {
+    background-color: rgba(14, 14, 14, 0.5);
+    transition: background-color 0.4s ease;
+}
+
+.box button {
+    background: #2f2d2d;
+    border: 0;
+    color: #f3fd15;
+    padding: 10px;
+    font-size: 20px;
+    width: 330px;
+    margin: 20px auto;
+    display: block;
+    cursor: pointer;
+    outline: none;
+    border-radius: 7px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box button:hover {
+    background: #292525;
+    box-shadow: 0 0 15px #f3fd15;
+}
+
+.box p {
+    font-size: 14px;
+    text-align: center;
+}
+
+.box p span {
+    cursor: pointer;
+    color: #666;
+}
+
+@media screen and (max-width: 986px) {
+    .bgvid {
+        height: 100px !important;
+    }
+}
+
+@media screen and (min-width: 986px) {
+    .bgvid.back {
+        width: 100%;
+    }
+}
