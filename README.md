@@ -17,33 +17,28 @@ https://tononjacopo.com/ricordella
 
 ### 🔹 Homepage
 
-<img src="https://github.com/tononjacopo/ricordella/blob/main/screenshot/home.png" width="700">
+<img src="https://github.com/tononjacopo/Ricordella/blob/2ca0b4302368f48289e51ecc98f933e4074c91be/assets/screenshot/home.png" width="700">
 
 *Main screen of the project.*
 
 ### 🔹 register Section
 
-<img src="https://github.com/tononjacopo/ricordella/blob/main/screenshot/register.png" width="700">
+<img src="https://github.com/tononjacopo/Ricordella/blob/2ca0b4302368f48289e51ecc98f933e4074c91be/assets/screenshot/register.png" width="700">
 
 *Register form for users.*
 
 ### 🔹 Notes Page
 
-<img src="https://github.com/tononjacopo/ricordella/blob/main/screenshot/notes-page.png" width="700">
+<img src="https://github.com/tononjacopo/Ricordella/blob/2ca0b4302368f48289e51ecc98f933e4074c91be/assets/screenshot/notes-page.png" width="700">
 
 *Detailed view of the Ricordella offerings.*
 
 ### 🔹 Notes Creation
 
-<img src="https://github.com/tononjacopo/ricordella/blob/main/screenshot/new-note.png" height="400">
+<img src="https://github.com/tononjacopo/Ricordella/blob/2ca0b4302368f48289e51ecc98f933e4074c91be/assets/screenshot/new-note.png" height="400">
 
 *Detailed view on how to create a new note.*
 
-### 🔹 Premium Page
-
-<img src="https://github.com/tononjacopo/ricordella/blob/main/screenshot/premium.png" width="700">
-
-*Prewmium page coming soon.*
 
 ## 🗁 Project Structure
 
