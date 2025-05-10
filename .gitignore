@@ -1,4 +1,6 @@
 database
 config
-*/.*
+.*
+.*/
+
 
