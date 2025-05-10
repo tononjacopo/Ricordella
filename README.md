@@ -1,9 +1,9 @@
-# 📒 InkDrop - Full-stack project
+# 📒 Ricordella - Full-stack project
 
 The project is a note-taking web application where users can create, manage, and prioritize notes with customizable titles, texts, and deadlines, providing an intuitive and efficient way to organize personal tasks and reminders.
 ## 🌐 Live Demo
 
-⚠️DUE TO MAINTENANCE REASON THE PAGE ATM IS NOT ONLINE
+https://tononjacopo.com/ricordella
 
 ## 🔥 Features
 
@@ -48,51 +48,37 @@ The project is a note-taking web application where users can create, manage, and
 ## 🗁 Project Structure
 
 ```plaintext
-ricordella/
-│
-├── /public/               # Cartella accessibile da browser
-│   ├── index.php          # Front controller (entry point)
-│   ├── login.php
-│   ├── register.php
-│   ├── dashboard.php
-│   ├── logout.php
-│   └── assets/            # style, script, media
-│
-├── /app/                  # Logica dell'applicazione
-│   ├── config.php         # Configurazione DB, sessioni, timeout
-│   ├── routes.php         # Routing base se usi un router custom
-│   ├── auth/              # Autenticazione e gestione utente
-│   │   ├── login.php
-│   │   ├── register.php
-│   │   ├── logout.php
-│   │   └── session.php    # Timeout inattività
-│   ├── controllers/       # Logica applicativa
-│   │   └── NoteController.php
-│   ├── models/            # Accesso al database
-│   │   ├── User.php
-│   │   └── Note.php
-│   ├── middlewares/       # Anti-DoS, rate limiter, auth checks
-│   │   ├── RateLimiter.php
-│   │   └── AuthMiddleware.php
-│   └── utils/             # Funzioni di supporto
-│       
-│
-├── /views/                # HTML e template
-│   ├── layout.php
-│   ├── login.php
-│   ├── register.php
-│   ├── dashboard.php
-│   └── note_form.php
-│
-├── .htaccess              # Protezione accessi e URL rewriting
-│ 
-├── database/
-│   └── schema.sql         #scheme sql
-│
-├── .env                   # Variabili di ambiente (non commitare su Git)
-├── composer.json          # Configurazione delle dipendenze PHP
-├── package.json           # (opzionale) Se usi strumenti JS (es. Webpack, Vite)
-└── README.md              # Documentazione del progetto
+Ricordella/
+  ├── config/
+  │   └── db.php              # Configurazione database
+  ├── utils/
+  │   └── functions.php       # Funzioni di utilità
+  ├── style/
+  │   ├── dashboard.css       # Stile per dashboard
+  │   ├── admin.css           # Stile per area admin
+  │   ├── font-general.css    # Stile dei font
+  │   └── form-login-and-register.css  # Stile per form
+  ├── script/
+  │   └── check-same-password.js # Validazione password
+  ├── media/
+  │   ├── img/                # Immagini
+  │   └── fonts/              # Font
+  ├── user/
+  │   ├── dashboard.php       # Dashboard utente
+  │   ├── create_note.php     # Creazione note
+  │   ├── edit_note.php       # Modifica note
+  │   ├── delete_note.php     # Eliminazione note
+  │   ├── daily_notes.php     # Note del giorno
+  │   └── shared_notes.php    # Note condivise
+  ├── admin/
+  │   ├── dashboard.php       # Dashboard admin
+  │   ├── edit_user.php       # Gestione utenti
+  │   ├── toggle_premium.php  # Attivazione/disattivazione premium
+  │   └── delete_user.php     # Eliminazione utenti
+  ├── index.html              # Pagina di benvenuto
+  ├── login.php               # Pagina di login
+  ├── register.php            # Pagina di registrazione
+  └── logout.php              # Gestione logout
 ```
 
 ## 🛠️ Technologies Used
