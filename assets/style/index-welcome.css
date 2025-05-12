@@ -1,77 +1,121 @@
-:root {
-    --accent: #e1e80a;
-    --primary: #0f0f0f;
-    --secondary: #333;
-    --text: #fff;
-}
-
-
-html {
-    overflow: hidden;
-}
+@import 'font-general.css';
 
 body {
-    font-family: 'Arial Rounded MT Bold', sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 100vh;
-    background: url("../img/wallpaper-blur.png") center/cover no-repeat;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
 }
 
 #welcome-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    max-width: 500px;
+    width: 90%;
     text-align: center;
-    color: #292525;
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.8s ease-out forwards;
+    position: relative;
+    z-index: 1;
 }
 
 #welcome-text {
-    opacity: 0;
-    font-size: 3em;
-    margin-bottom: 20px;
-    position: relative;
-    animation: fadeInDown 1.5s forwards;
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
 }
 
 #welcome-highlight {
-    color: #e1e80a;
-    font-weight: bold;
+    color: var(--primary);
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    display: block;
+    margin-top: var(--spacing-sm);
 }
 
 #login-link, #register-link {
     display: inline-block;
-    text-align: center;
-    margin: 10px;
-    padding: 10px 20px;
+    padding: var(--spacing-md) var(--spacing-xl);
+    margin: 0 var(--spacing-sm);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: all 0.3s ease;
     text-decoration: none;
-    border-radius: 15px;
-    background-color: #292525;
-    color: #fff;
-    font-weight: bold;
-    opacity: 0; /* invisibile */
-    animation: fadeInButtons 1.0s forwards 1.2s;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-#login-link:hover, #register-link:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px #e1e80a;
+#login-link {
+    background-color: var(--primary);
+    color: white;
 }
 
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
+#login-link:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+#register-link {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+#register-link:hover {
+    background-color: rgba(67, 97, 238, 0.1);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Animated background */
+body::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    top: -25%;
+    left: -25%;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(67, 97, 238, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(58, 12, 163, 0.3) 0%, transparent 50%);
+    animation: rotate 20s linear infinite;
+    z-index: 0;
+}
+
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #welcome-container {
+        padding: var(--spacing-lg);
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-@keyframes fadeInButtons {
-    to {
-        opacity: 1;
+    #welcome-text {
+        font-size: var(--font-size-xl);
+    }
+
+    #welcome-highlight {
+        font-size: var(--font-size-2xl);
+    }
+
+    #login-link, #register-link {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        margin-bottom: var(--spacing-sm);
+        display: block;
     }
 }

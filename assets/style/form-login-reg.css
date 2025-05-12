@@ -1,78 +1,123 @@
+@import 'font-general.css';
+
 body {
-    padding: 0;
+    background-color: #f0f2f5;
+    height: 100vh;
     margin: 0;
-    background: url("../img/wallpaper-blur.png") center/cover fixed;
+    overflow: hidden;
 }
 
 .vid-container {
     position: relative;
     height: 100vh;
     overflow: hidden;
-}
-
-.bgvid.back {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-}
-
-.inner {
-    position: absolute;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .inner-container {
-    width: 400px;
-    height: 600px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
-    border-radius: 7px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
 }
 
 .box {
+    position: relative;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-xl);
+    z-index: 2;
+}
+
+.light {
+    position: relative;
+}
+
+.light::before {
+    content: '';
     position: absolute;
-    height: auto;
-    width: 100%;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.24);
-    padding: 30px 0;
-    border-radius: 7px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
+    top: -80px;
+    left: -80px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 1;
 }
 
-.box form {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.box h1 {
+h1 {
+    color: var(--primary);
     text-align: center;
-    margin: 30px 0;
-    font-size: 30px;
-    color: #2f2d2d;
+    margin-bottom: var(--spacing-xl);
+    font-size: var(--font-size-3xl);
     font-weight: 700;
 }
 
-.box input {
-    display: block;
-    width: 300px;
-    margin: 20px auto;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    border-radius: 7px;
-    border: 0;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-md);
+    background-color: var(--background);
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+button {
+    padding: var(--spacing-md);
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: var(--spacing-md);
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+p {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    color: var(--text-secondary);
+}
+
+.signup, .login {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.signup:hover, .login:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
 }
 
 .accept-terms {
@@ -99,7 +144,7 @@ body {
     position: relative;
     padding-left: 30px;
     cursor: pointer;
-    color: #fff;
+    color: var(--text-secondary);
 }
 
 .accept-terms input + label::before {
@@ -111,7 +156,7 @@ body {
     width: 20px;
     height: 20px;
     background-color: transparent;
-    border: 2px solid #b6aba3;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     box-sizing: border-box;
     transition: background-color 0.2s ease, border-color 0.2s ease;
@@ -131,10 +176,11 @@ body {
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    background-color: #2f2d2d;
-    border: 2px solid #2f2d2d;
+    background-color: var(--background);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    box-shadow: 0 0 7px #f3fd15;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.15);
     box-sizing: border-box;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
@@ -146,73 +192,28 @@ body {
     top: 47.5%;
     transform: translateY(-50%);
     font-size: 18px;
-    color: yellow;
+    color: var(--primary);
 }
 /*finish checkbox*/
 
-.login {
-    text-decoration: none;
-    color: #f3fd15;
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-input::placeholder {
-    color: #b6aba3;
+.box {
+    animation: fadeIn 0.6s ease-out forwards;
 }
 
-.signup {
-    color: #f3fd15 !important;
-    text-decoration: none;
-}
-
-.box input:focus,
-.box input:active,
-.box button:focus,
-.box button:active {
-    outline: none;
-}
-.box input:focus {
-    background-color: rgba(14, 14, 14, 0.5);
-    transition: background-color 0.4s ease;
-}
-
-.box button {
-    background: #2f2d2d;
-    border: 0;
-    color: #f3fd15;
-    padding: 10px;
-    font-size: 20px;
-    width: 330px;
-    margin: 20px auto;
-    display: block;
-    cursor: pointer;
-    outline: none;
-    border-radius: 7px;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.box button:hover {
-    background: #292525;
-    box-shadow: 0 0 15px #f3fd15;
-}
-
-.box p {
-    font-size: 14px;
-    text-align: center;
-}
-
-.box p span {
-    cursor: pointer;
-    color: #666;
-}
-
-@media screen and (max-width: 986px) {
-    .bgvid {
-        height: 100px !important;
+/* Responsive */
+@media (max-width: 768px) {
+    .inner-container {
+        padding: 0 var(--spacing-sm);
     }
-}
-
-@media screen and (min-width: 986px) {
-    .bgvid.back {
-        width: 100%;
+    
+    .box {
+        padding: var(--spacing-lg);
     }
 }

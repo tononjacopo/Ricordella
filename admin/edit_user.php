@@ -73,6 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $user['is_premium'] = $is_premium;
                     $user['role'] = $role;
                     $conn->commit();
+
+                     header("Location: dashboard.php");
                 } else {
                     $error = "Error updating user. Please try again.";
                     $conn->rollback();

@@ -6,7 +6,6 @@ $error = '';
 
 // Check if user is already logged in
 if (isLoggedIn()) {
-    // Redirect based on role
     if (isAdmin()) {
         header("Location: admin/dashboard.php");
     } else {
@@ -15,16 +14,37 @@ if (isLoggedIn()) {
     exit;
 }
 
-// Process login form
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-    // Validate input
+// Rate limiting: block login attempts after 5 failed attempts within 15 minutes
+$ip_address = $_SERVER['REMOTE_ADDR'];
+$rate_limit_key = "login_attempts_$ip_address";
+$max_attempts = 5;
+$lockout_time = 15 * 60; // 15 minutes
+
+if (isset($_SESSION[$rate_limit_key]) && $_SESSION[$rate_limit_key]['count'] >= $max_attempts) {
+    $time_diff = time() - $_SESSION[$rate_limit_key]['last_attempt'];
+    if ($time_diff < $lockout_time) {
+        logError("Rate limit exceeded for IP: $ip_address");
+        die("Too many login attempts. Please try again after " . (int)(($lockout_time - $time_diff) / 60) . " minutes.");
+    } else {
+        // Reset rate limit if lockout time has passed
+        unset($_SESSION[$rate_limit_key]);
+    }
+}
+
+// Process login form
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $username = htmlspecialchars(trim($_POST['username']));
+    $password = trim($_POST['password']);
+
     if (empty($username) || empty($password)) {
+        logError("Login failed: Missing username or password for IP: $ip_address");
         $error = "Username and password are required";
     } else {
-        // Query user
         $stmt = $conn->prepare("SELECT id, username, password_hash, role, is_premium FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -33,15 +53,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
 
-            // Verify password
             if (password_verify($password, $user['password_hash'])) {
-                // Set session variables
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
                 $_SESSION['is_premium'] = (bool)$user['is_premium'];
 
-                // Redirect based on role
+                // Reset rate limit on successful login
+                unset($_SESSION[$rate_limit_key]);
+
                 if ($user['role'] === 'admin') {
                     header("Location: admin/dashboard.php");
                 } else {
@@ -57,6 +77,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmt->close();
     }
+
+    // Increment rate limit counter
+    if (!isset($_SESSION[$rate_limit_key])) {
+        $_SESSION[$rate_limit_key] = ['count' => 0, 'last_attempt' => time()];
+    }
+    $_SESSION[$rate_limit_key]['count']++;
+    $_SESSION[$rate_limit_key]['last_attempt'] = time();
 }
 ?>
 <!DOCTYPE html>

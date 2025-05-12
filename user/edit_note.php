@@ -71,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../assets/style/dashboard.css">
     <link rel="stylesheet" href="../assets/style/font-general.css">
+
     <link rel="icon" href="../assets/img/logo-favicon.ico" type="image/x-icon">
 </head>
 <body>

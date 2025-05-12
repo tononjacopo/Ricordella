@@ -54,3 +54,12 @@ CREATE TABLE tags (
     PRIMARY KEY (note_id, tag_name),
     FOREIGN KEY (note_id) REFERENCES notes(id) ON DELETE CASCADE
 ) ENGINE=InnoDB CHARSET=utf8mb4;
+
+
+-- Aggiungi il campo last_login alla tabella users
+ALTER TABLE users ADD COLUMN last_login TIMESTAMP NULL DEFAULT NULL;
+
+-- Aggiungi alcuni dati iniziali di esempio agli admin esistenti
+UPDATE users SET last_login = '2025-05-12 15:30:25' WHERE role = 'admin' AND id = 1;
+-- Se hai più admin, puoi impostare date diverse per ciascuno
+-- UPDATE users SET last_login = '2025-05-11 09:45:12' WHERE role = 'admin' AND id = 2;

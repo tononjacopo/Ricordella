@@ -1,112 +1,421 @@
-/* Admin panel specific styles */
+@import 'dashboard.css';
 
+/* Admin specific styles */
+header {
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+}
+
+.logs-container {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    box-shadow: var(--shadow-md);
+}
+
+.logs {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.logo {
+    color: white;
+}
+
+nav a {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+nav a:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+nav a.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.user-info span {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.logout {
+    color: var(--surface);
+    background-color: var(--danger);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.logout:hover {
+
+}
+
+.lucide-chevrons-up-down {
+    margin-left: 4px;
+    opacity: 0.4;
+    vertical-align: middle;
+    transition: opacity 0.2s ease;
+}
+.lucide-chevrons-up-down.active {
+    opacity: 1;
+}
+
+
+/* Mantieni la tabella stabile */
+.users-table th {
+    min-width: 100px;
+}
+
+.users-table th:first-child {
+    min-width: 50px;
+}
+
+.users-table th:last-child {
+    min-width: 150px;
+}
+
+/* Users table */
 .users-table-container {
     overflow-x: auto;
-    margin-top: 1.5rem;
+    background-color: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-top: var(--spacing-lg);
 }
 
 .users-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: var(--light-bg);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: var(--font-size-sm);
 }
 
 .users-table th,
 .users-table td {
-    padding: 0.8rem 1rem;
+    padding: var(--spacing-md);
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .users-table th {
+    background-color: rgba(0, 0, 0, 0.02);
+    font-weight: 600;
+    color: var(--text-primary);
+    position: sticky;
+    top: 0;
+}
+
+.users-table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.users-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+
+/* Admin action buttons */
+.actions {
+    white-space: nowrap;
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+}
+
+.btn.edit {
+    background-color: rgba(67, 97, 238, 0.1);
+    color: var(--primary);
+}
+
+.btn.edit:hover {
     background-color: var(--primary);
     color: white;
 }
 
-.users-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+.btn.delete {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: var(--danger);
 }
 
-.users-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-.users-table .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.users-table .btn {
-    padding: 0.3rem 0.7rem;
-    font-size: 0.8rem;
-}
-
-.users-table .btn.edit {
-    background-color: var(--info);
-    color: white;
-}
-
-.users-table .btn.add {
-    background-color: var(--success);
-    color: white;
-}
-
-.users-table .btn.remove {
-    background-color: var(--warning);
-    color: white;
-}
-
-.users-table .btn.delete {
+.btn.delete:hover {
     background-color: var(--danger);
     color: white;
 }
 
-.users-table .btn:hover {
-    opacity: 0.9;
+.btn.add {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--success);
+}
+
+.btn.add:hover {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn.remove {
+    background-color: rgba(255, 152, 0, 0.1);
+    color: var(--warning);
+}
+
+.btn.remove:hover {
+    background-color: var(--warning);
+    color: white;
 }
 
 /* Admin form */
 .admin-form-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.5rem;
+    background-color: var(--surface);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-top: var(--spacing-lg);
 }
 
 .admin-form {
-    background-color: var(--light-bg);
-    padding: 2rem;
-    border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
+    max-width: 800px;
 }
 
-.user-stats {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background-color: var(--light-bg);
-    border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+.admin-form .form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input {
+    margin-right: var(--spacing-sm);
 }
 
 .note {
-    font-size: 0.85rem;
-    color: #777;
-    margin-top: 0.3rem;
+    margin-top: var(--spacing-xs);
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    font-style: italic;
 }
 
+.form-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.input-clearable {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-clearable input {
+    padding-right: 2em; /* spazio per la X */
+    width: 100%;
+}
+
+.clear-btn {
+    position: absolute;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    color: #888;
+    cursor: pointer;
+    display: none;
+}
+
+.input-clearable input:not(:placeholder-shown) + .clear-btn,
+.input-clearable input:valid + .clear-btn {
+    display: block;
+}
+
+
+.search-bar-admin input,
+.search-bar-admin select{
+    border: 1px solid var(--border-color);
+    background-color: var(--background);
+    transition: all 0.3s ease;
+    outline: none;
+}
+.search-bar-admin input:focus,
+.search-bar-admin select:focus{
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+/* Bottone aggiorna */
+.refresh-btn {
+    position: absolute;
+    right: 2.5rem;
+    top: 2.5rem;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .2s;
+    z-index: 9;
+}
+.refresh-btn:active, .refresh-btn:focus { background: var(--primary-dark);}
+.refresh-btn i { font-size: 1.6rem; animation: spin 1s linear infinite; }
+.refresh-btn:not(.spinning) i { animation: none; }
+@keyframes spin { to {transform: rotate(360deg);} }
+
+/* Ricerca avanzata */
+.search-bar-admin {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    margin: 0 0 1.5rem 0;
+    flex-wrap: wrap;
+}
+.search-bar-admin label { font-size: .98em; color: var(--text-secondary);}
+.search-bar-admin input, .search-bar-admin select {
+    padding: .5em .8em;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--surface);
+    font-size: 1em;
+    min-width: 120px;
+}
+.search-bar-admin .btn-search {
+    background: var(--primary);
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    padding: .6em 1.2em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background .2s;
+}
+.search-bar-admin .btn-search:hover { background: var(--primary-dark);}
+.search-bar-admin .btn-search i { margin-right: 4px;}
+
+/* Custom scrollbar globale (anche per admin) */
+::-webkit-scrollbar { width: 8px;}
+::-webkit-scrollbar-track { background: transparent;}
+::-webkit-scrollbar-thumb { background: var(--primary);}
+::-webkit-scrollbar-thumb:hover { background: var(--secondary);}
+::-webkit-scrollbar-thumb:active { background: var(--secondary);}
+html {scrollbar-color: var(--primary) transparent; scrollbar-width: thin;}
+
+/* Tabella */
+.users-table th, .users-table td {
+    vertical-align: middle;
+    text-align: left;
+    padding: .85em .7em;
+}
+.users-table th {
+    position: relative;
+    user-select: none;
+    white-space: nowrap;
+}
+.sort-icons {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    width: 16px;
+}
+.sort-icons svg {
+    display: block;
+    width: 100%;
+    height: 16px;
+}
+.sort-icons .active { fill: var(--primary); }
+.users-table th .sort-icons { min-width: 14px;}
+.users-table th .sort-icons svg { opacity:.45;}
+.users-table th .sort-icons svg.active { opacity:1;}
+.users-table .actions { white-space: nowrap;}
+.users-table .action-btn {
+    background: none;
+    border: none;
+    color: var(--primary);
+    margin: 0 .25em;
+    font-size: 1.15em;
+    cursor: pointer;
+    transition: color .15s, transform .15s;
+    vertical-align: middle;
+}
+.users-table .action-btn:hover {
+    transform: scale(1.2);
+}
+.btn.primary {
+    background-color: var(--primary);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.btn.primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.btn.secondary:hover {
+    background-color: var(--background);
+    color: var(--text-primary);
+}
+
+/* User stats */
+.user-stats {
+    background-color: var(--surface);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-top: var(--spacing-lg);
+}
+
+.user-stats h2 {
+    margin-top: 0;
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+}
+
+.user-stats p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-secondary);
+}
+
+.user-stats strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .users-table th,
-    .users-table td {
-        padding: 0.5rem;
+    .actions {
+        flex-direction: column;
     }
 
-    .users-table .actions {
-        flex-direction: column;
+    .btn {
+        width: 100%;
+        margin-bottom: var(--spacing-xs);
     }
 }

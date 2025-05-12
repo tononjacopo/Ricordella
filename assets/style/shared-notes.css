@@ -1,0 +1,38 @@
+/* Aggiungere questi stili a dashboard.css o in un file separato */
+
+/* Stili per le note condivise */
+.note.shared {
+    border-left: 4px solid #673ab7;
+}
+
+.note-info {
+    margin-top: var(--spacing-xs);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.shared-by {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.permission {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+}
+
+.permission[data-type="view"] {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--success);
+}
+
+.permission[data-type="edit"] {
+    background-color: rgba(103, 58, 183, 0.1);
+    color: #673ab7;
+}

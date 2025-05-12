@@ -16,12 +16,20 @@ if (isLoggedIn()) {
 }
 
 // Process registration form
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+
+    $email = htmlspecialchars(trim($_POST['email']));
+    $username = htmlspecialchars(trim($_POST['username']));
+    $password = trim($_POST['password']);
+    $confirm_password = trim($_POST['confirm_password']);
     $accept_terms = isset($_POST['accept_terms']) ? true : false;
+
+    // Validate username format (e.g., length, allowed characters)
+    if (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $username)) {
+        logError("Invalid username format: $username");
+        $error = "Username must be 3-20 characters long and contain only letters, numbers, and underscores.";
+    }
 
     // Validate input
     if (empty($email) || empty($username) || empty($password) || empty($confirm_password)) {

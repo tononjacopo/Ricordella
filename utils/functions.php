@@ -153,16 +153,56 @@ function countUserNotes($userId) {
 /**
  * Get all users (for admin)
  */
-function getAllUsers() {
+function getFilteredUsers($filters, $sort_column, $sort_order) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * FROM users ORDER BY created_at DESC");
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $users = [];
-    while ($user = $result->fetch_assoc()) {
-        $users[] = $user;
+    $where = [];
+    $params = [];
+    $types = '';
+
+    if($filters['id']!=='') {
+        $where[] = 'users.id = ?';
+        $params[] = $filters['id'];
+        $types .= 'i';
     }
-    $stmt->close();
+    if($filters['username']!=='') {
+        $where[] = 'users.username LIKE ?';
+        $params[] = '%'.$filters['username'].'%';
+        $types .= 's';
+    }
+    if($filters['email']!=='') {
+        $where[] = 'users.email LIKE ?';
+        $params[] = '%'.$filters['email'].'%';
+        $types .= 's';
+    }
+    if($filters['is_premium']!=='') {
+        $where[] = 'users.is_premium = ?';
+        $params[] = $filters['is_premium'];
+        $types .= 'i';
+    }
+
+    $orderBy = '';
+    if($sort_column==='notes_count') $orderBy = "notes_count $sort_order";
+    else $orderBy = "users.$sort_column $sort_order";
+
+    $sql = "SELECT users.*, COUNT(notes.id) AS notes_count
+            FROM users
+            LEFT JOIN notes ON users.id = notes.user_id";
+    if($where) $sql.= " WHERE ".implode(' AND ', $where);
+    $sql.= " GROUP BY users.id ORDER BY $orderBy";
+
+    $stmt = $conn->prepare($sql);
+    if($params) $stmt->bind_param($types, ...$params);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $users = [];
+    while($row = $res->fetch_assoc()) $users[] = $row;
     return $users;
+}
+
+function logError($message) {
+    $log_file = __DIR__ . '/../logs/errors.log';
+    $date = date('Y-m-d H:i:s');
+    $formatted_message = "[$date] $message\n";
+    file_put_contents($log_file, $formatted_message, FILE_APPEND);
 }
 ?>
