@@ -240,12 +240,6 @@ nav a.active {
     display: none;
 }
 
-.input-clearable input:not(:placeholder-shown) + .clear-btn,
-.input-clearable input:valid + .clear-btn {
-    display: block;
-}
-
-
 .search-bar-admin input,
 .search-bar-admin select{
     border: 1px solid var(--border-color);

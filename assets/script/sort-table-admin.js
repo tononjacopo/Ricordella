@@ -1,22 +1,57 @@
-let notesCycleOffset = 0;
+ // Variabili per l'ordinamento ciclico delle note
+    let notesSortState = 'desc'; // Stato iniziale: decrescente
+    let notesSortCycle = 0; // Contatore ciclo
 
-document.querySelector('[data-sort="notes_count"]').addEventListener('click', () => {
-    const rows = Array.from(document.querySelectorAll('tbody tr'));
-    const maxNotes = Math.max(...rows.map(row => parseInt(row.dataset.notesCount, 10) || 0));
+    // Gestione ordinamento ciclico note
+    function setupNotesSort() {
+        const notesHeader = document.querySelector('a[href*="sort=notes_count"]');
+        if (notesHeader) {
+            notesHeader.addEventListener('click', function(e) {
+                e.preventDefault();
 
-    // Funzione per il valore "ciclico"
-    function cycleValue(n) {
-        return (n - notesCycleOffset + maxNotes + 1) % (maxNotes + 1);
+                const rows = Array.from(document.querySelectorAll('#tableBody tr'));
+                //const maxNotes = Math.max(...rows.map(row => parseInt(row.cells[5].textContent) || 0));
+
+                // Ordina le righe in base al valore ciclico delle note
+                rows.sort((a, b) => {
+                    const notesA = parseInt(a.cells[5].textContent) || 0;
+                    const notesB = parseInt(b.cells[5].textContent) || 0;
+
+                    // Algoritmo di ordinamento ciclico: comincia dai valori più alti poi cicla
+                    return notesSortState === 'desc' ?
+                        notesB - notesA :
+                        notesA - notesB;
+                });
+
+                // Applica l'ordinamento
+                const tbody = document.querySelector('#tableBody');
+                rows.forEach(row => tbody.appendChild(row));
+
+                // Aggiorna lo stato dell'ordinamento
+                notesSortCycle++;
+                if (notesSortCycle > 1) {
+                    notesSortCycle = 0;
+                    notesSortState = notesSortState === 'desc' ? 'asc' : 'desc';
+                }
+
+                // Aggiorna l'URL senza ricaricare la pagina
+                const url = new URL(window.location);
+                url.searchParams.set('sort', 'notes_count');
+                url.searchParams.set('order', notesSortState);
+                history.pushState({}, '', url);
+            });
+        }
     }
 
-    rows.sort((a, b) => {
-        const aVal = parseInt(a.dataset.notesCount, 10) || 0;
-        const bVal = parseInt(b.dataset.notesCount, 10) || 0;
-        return cycleValue(aVal) - cycleValue(bVal);
+    // Inizializza tutti i gestori
+    document.addEventListener('DOMContentLoaded', function() {
+        setupDeleteHandlers();
+        setupClearButtons();
+        setupNotesSort();
+
+        // Inizializza lo stato di ordinamento in base all'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('sort') === 'notes_count') {
+            notesSortState = urlParams.get('order') || 'desc';
+        }
     });
-
-    const tbody = document.querySelector('tbody');
-    rows.forEach(row => tbody.appendChild(row));
-
-    notesCycleOffset = (notesCycleOffset + 1) % (maxNotes + 1); // Avanza l'offset ciclico
-});
