@@ -383,6 +383,135 @@ html {scrollbar-color: var(--primary) transparent; scrollbar-width: thin;}
     color: var(--text-primary);
 }
 
+/* Stili per le corone premium */
+.crown-premium {
+    color: gold;
+    text-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.crown-non-premium {
+    color: #ccc;
+    position: relative;
+}
+
+.crown-non-premium:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: #d32f2f;
+    transform: rotate(-15deg);
+}
+
+/* Contenitore per i bottoni di azione sulla destra */
+.search-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Fix per il layout del form di ricerca */
+.search-bar-admin {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Rimuovo il pulsante refresh dalla posizione assoluta */
+.refresh-btn {
+    position: static;
+    width: 38px;
+    height: 38px;
+    margin: 0;
+    font-size: 0.9em;
+}
+.refresh-btn i {
+    font-size: 1.2em;
+}
+
+/* Popup di conferma */
+#confirm-popup {
+    display: none;
+    position: fixed;
+    background: white;
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.15);
+    z-index: 100;
+    width: 220px;
+}
+#confirm-popup p {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+}
+#confirm-yes {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+#confirm-no {
+    background: #f0f0f0;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Bottone toggle premium */
+.toggle-premium-btn {
+    position: relative;
+}
+.premium-icon {
+    position: absolute;
+    bottom: -2px;
+    right: -4px;
+    font-size: 10px;
+    background: white;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.premium-add {
+    color: #4caf50;
+}
+.premium-remove {
+    color: #f44336;
+}
+
+/* NUOVI STILI PER LE FRECCE DI ORDINAMENTO */
+.lucide-chevrons-up-down {
+    opacity: 0.4;
+    vertical-align: middle;
+    transition: opacity 0.2s ease;
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+}
+.lucide-chevrons-up-down.active {
+    opacity: 1;
+    color: var(--primary);
+}
+
 /* User stats */
 .user-stats {
     background-color: var(--surface);

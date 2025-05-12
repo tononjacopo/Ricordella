@@ -49,43 +49,51 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
             <a href="../logout.php" class="logout">Logout</a>
         </div>
     </header>
-    <button class="refresh-btn" id="refreshTable" title="Aggiorna"><i class="fa-solid fa-rotate"></i></button>
+
     <main>
         <h1>User Management</h1>
         <!-- Ricerca avanzata -->
         <form class="search-bar-admin" method="get">
-            <div>
-                <label for="search_id">ID</label>
-                 <div class="input-clearable">
-                     <input type="text" name="id" id="search_id" value="<?php echo htmlspecialchars($filters['id']); ?>" />
-                     <button type="button" class="clear-btn" onclick="clearInput(this)">×</button>
-                 </div>
-            </div>
-            <div>
-                <label for="search_username">Username</label>
-                <div class="input-clearable">
-                    <input type="text" name="username" id="search_username" value="<?php echo htmlspecialchars($filters['username']); ?>" />
-                    <button type="button" class="clear-btn" onclick="clearInput(this)">×</button>
+            <div class="search-fields">
+                <div>
+                    <label for="search_id">ID</label>
+                     <div class="input-clearable">
+                         <input type="text" name="id" id="search_id" value="<?php echo htmlspecialchars($filters['id']); ?>" />
+                         <button type="button" class="clear-btn" onclick="clearInput(this)">×</button>
+                     </div>
                 </div>
+                <div>
+                    <label for="search_username">Username</label>
+                    <div class="input-clearable">
+                        <input type="text" name="username" id="search_username" value="<?php echo htmlspecialchars($filters['username']); ?>" />
+                        <button type="button" class="clear-btn" onclick="clearInput(this)">×</button>
+                    </div>
                 </div>
-            <div>
-                <label for="search_email">Email</label>
-                <div class="input-clearable">
-                    <input type="text" name="email" id="search_email" value="<?php echo htmlspecialchars($filters['email']); ?>" />
-                    <button type="button" class="clear-btn" onclick="clearInput(this)">×</button>
+                <div>
+                    <label for="search_email">Email</label>
+                    <div class="input-clearable">
+                        <input type="text" name="email" id="search_email" value="<?php echo htmlspecialchars($filters['email']); ?>" />
+                        <button type="button" class="clear-btn" onclick="clearInput(this)">×</button>
+                    </div>
+                </div>
+                <div>
+                    <label for="search_premium">Premium</label>
+                    <div class="input-clearable">
+                        <select name="is_premium" id="search_premium">
+                            <option value="">All</option>
+                            <option value="1" <?php if($filters['is_premium'] === '1') echo 'selected'; ?>>Yes</option>
+                            <option value="0" <?php if($filters['is_premium'] === '0') echo 'selected'; ?>>No</option>
+                        </select>
+                     </div>
                 </div>
             </div>
-            <div>
-                <label for="search_premium">Premium</label>
-                <div class="input-clearable">
-                    <select name="is_premium" id="search_premium">
-                        <option value="">All</option>
-                        <option value="1" <?php if($filters['is_premium'] === '1') echo 'selected'; ?>>Yes</option>
-                        <option value="0" <?php if($filters['is_premium'] === '0') echo 'selected'; ?>>No</option>
-                    </select>
-                 </div>
+
+            <div class="search-actions">
+                <button type="submit" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+                <button type="button" class="refresh-btn" id="refreshTable" title="Refresh">
+                    <i class="fa-solid fa-rotate"></i>
+                </button>
             </div>
-            <button type="submit" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i>Cerca</button>
         </form>
 
         <div class="users-table-container" style="position:relative;">
@@ -98,37 +106,53 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
                         <th>
                           <a href="?<?php echo http_build_query(array_merge($_GET, ['sort'=>'role','order'=>($sort_column=='role' && $sort_order=='desc'?'asc':'desc')])); ?>">
                             Role
-                            <span class="sort-icons">
-                              <svg class="<?php echo $sort_column=='role'&&$sort_order=='asc'?'active':''; ?>" viewBox="0 0 10 5"><path d="M0 5L5 0L10 5H0Z"/></svg>
-                              <svg class="<?php echo $sort_column=='role'&&$sort_order=='desc'?'active':''; ?>" viewBox="0 0 10 5"><path d="M0 0L5 5L10 0H0Z"/></svg>
-                            </span>
+                            <!-- NUOVA FRECCIA DI ORDINAMENTO -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                 class="lucide lucide-chevrons-up-down <?php echo $sort_column=='role' ? 'active' : ''; ?>">
+                                <path d="m7 15 5 5 5-5"></path>
+                                <path d="m7 9 5-5 5 5"></path>
+                            </svg>
                           </a>
                         </th>
                         <th>
                           <a href="?<?php echo http_build_query(array_merge($_GET, ['sort'=>'is_premium','order'=>($sort_column=='is_premium'&&$sort_order=='desc'?'asc':'desc')])); ?>">
                             Premium
-                            <span class="sort-icons">
-                              <svg class="<?php echo $sort_column=='is_premium'&&$sort_order=='asc'?'active':''; ?>" viewBox="0 0 10 5"><path d="M0 5L5 0L10 5H0Z"/></svg>
-                              <svg class="<?php echo $sort_column=='is_premium'&&$sort_order=='desc'?'active':''; ?>" viewBox="0 0 10 5"><path d="M0 0L5 5L10 0H0Z"/></svg>
-                            </span>
+                            <!-- NUOVA FRECCIA DI ORDINAMENTO -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                 class="lucide lucide-chevrons-up-down <?php echo $sort_column=='is_premium' ? 'active' : ''; ?>">
+                                <path d="m7 15 5 5 5-5"></path>
+                                <path d="m7 9 5-5 5 5"></path>
+                            </svg>
                           </a>
                         </th>
                         <th>
                           <a href="?<?php echo http_build_query(array_merge($_GET, ['sort'=>'notes_count','order'=>($sort_column=='notes_count'&&$sort_order=='desc'?'asc':'desc')])); ?>">
                             Notes
-                            <span class="sort-icons">
-                              <svg class="<?php echo $sort_column=='notes_count'&&$sort_order=='asc'?'active':''; ?>" viewBox="0 0 10 5"><path d="M0 5L5 0L10 5H0Z"/></svg>
-                              <svg class="<?php echo $sort_column=='notes_count'&&$sort_order=='desc'?'active':''; ?>" viewBox="0 0 10 5"><path d="M0 0L5 5L10 0H0Z"/></svg>
-                            </span>
+                            <!-- NUOVA FRECCIA DI ORDINAMENTO -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                 class="lucide lucide-chevrons-up-down <?php echo $sort_column=='notes_count' ? 'active' : ''; ?>">
+                                <path d="m7 15 5 5 5-5"></path>
+                                <path d="m7 9 5-5 5 5"></path>
+                            </svg>
                           </a>
                         </th>
                         <th>
                           <a href="?<?php echo http_build_query(array_merge($_GET, ['sort'=>'created_at','order'=>($sort_column=='created_at'&&$sort_order=='desc'?'asc':'desc')])); ?>">
                             Created
-                            <span class="sort-icons">
-                              <svg class="<?php echo $sort_column=='created_at'&&$sort_order=='asc'?'active':''; ?>" viewBox="0 0 10 5"><path d="M0 5L5 0L10 5H0Z"/></svg>
-                              <svg class="<?php echo $sort_column=='created_at'&&$sort_order=='desc'?'active':''; ?>" viewBox="0 0 10 5"><path d="M0 0L5 5L10 0H0Z"/></svg>
-                            </span>
+                            <!-- NUOVA FRECCIA DI ORDINAMENTO -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                 class="lucide lucide-chevrons-up-down <?php echo $sort_column=='created_at' ? 'active' : ''; ?>">
+                                <path d="m7 15 5 5 5-5"></path>
+                                <path d="m7 9 5-5 5 5"></path>
+                            </svg>
                           </a>
                         </th>
                         <th>Actions</th>
@@ -140,18 +164,33 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
                             <td><?php echo $user['id']; ?></td>
                             <td><?php echo htmlspecialchars($user['username']); ?></td>
                             <td><?php echo htmlspecialchars($user['email']); ?></td>
-                            <td><?php echo $user['role']; ?></td>
-                            <td><?php echo $user['is_premium'] ? '<i class="fa-solid fa-star" style="color:gold"></i>' : '<i class="fa-regular fa-star"></i>'; ?></td>
+                            <td>
+                                <?php if ($user['role'] === 'admin'): ?>
+                                    <span class="role-admin">admin</span>
+                                <?php else: ?>
+                                    <?php echo $user['role']; ?>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?php if($user['is_premium']): ?>
+                                    <i class="fa-solid fa-crown crown-premium"></i>
+                                <?php else: ?>
+                                    <i class="fa-solid fa-crown crown-non-premium"></i>
+                                <?php endif; ?>
+                            </td>
                             <td><?php echo $user['notes_count']; ?></td>
                             <td><?php echo formatDate($user['created_at']); ?></td>
                             <td class="actions">
-                                <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="action-btn" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="action-btn" title="Edit"><i class="fa-solid fa-pen-to-square" style="color:#2196f3"></i></a>
                                 <?php if ($user['role'] !== 'admin'): ?>
-                                <a href="toggle_premium.php?id=<?php echo $user['id']; ?>&premium=<?php echo $user['is_premium'] ? '0' : '1'; ?>" class="action-btn" title="<?php echo $user['is_premium'] ? 'Remove Premium':'Add Premium'; ?>">
-                                    <i class="fa-solid <?php echo $user['is_premium'] ? 'fa-star-half-stroke':'fa-star'; ?>"></i>
+                                <a href="toggle_premium.php?id=<?php echo $user['id']; ?>&premium=<?php echo $user['is_premium'] ? '0' : '1'; ?>" class="action-btn toggle-premium-btn" title="<?php echo $user['is_premium'] ? 'Remove Premium' : 'Add Premium'; ?>">
+                                    <i class="fa-solid fa-crown" style="color: gold;"></i>
+                                    <span class="premium-icon <?php echo $user['is_premium'] ? 'premium-remove' : 'premium-add'; ?>">
+                                        <i class="fa-solid <?php echo $user['is_premium'] ? 'fa-minus' : 'fa-plus'; ?>"></i>
+                                    </span>
                                 </a>
-                                <a href="delete_user.php?id=<?php echo $user['id']; ?>" class="action-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this user? All their notes will also be deleted.')">
-                                    <i class="fa-solid fa-trash"></i>
+                                <a href="#" class="action-btn delete-user" title="Delete" data-id="<?php echo $user['id']; ?>">
+                                    <i class="fa-solid fa-trash" style="color:#f44336"></i>
                                 </a>
                                 <?php endif; ?>
                             </td>
@@ -164,6 +203,14 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
     <footer>
         <p>&copy; <?php echo date('Y'); ?> Ricordella - Admin Panel</p>
     </footer>
+
+    <!-- Popup di conferma eliminazione -->
+    <div id="confirm-popup">
+        <p>Sei sicuro di voler eliminare questo utente?</p>
+        <button id="confirm-yes">Sì</button>
+        <button id="confirm-no">No</button>
+    </div>
+
     <script>
         // Aggiorna la tabella senza refresh pagina (ajax-like)
         document.getElementById('refreshTable').addEventListener('click', function() {
@@ -177,6 +224,9 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
                     let newBody = doc.querySelector("#tableBody");
                     document.querySelector("#tableBody").innerHTML = newBody.innerHTML;
                     setTimeout(()=>btn.classList.remove('spinning'), 500);
+
+                    // Re-init delete handlers
+                    setupDeleteHandlers();
                 });
         });
 
@@ -185,6 +235,51 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
             input.value = '';
             input.focus();
         }
+
+        // Gestione popup conferma eliminazione
+        function setupDeleteHandlers() {
+            const popup = document.getElementById('confirm-popup');
+            const deleteButtons = document.querySelectorAll('.delete-user');
+            let currentUserId = null;
+
+            deleteButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentUserId = this.dataset.id;
+
+                    // Posizionamento del popup vicino al bottone
+                    const rect = this.getBoundingClientRect();
+                    const popupHeight = 80; // Altezza stimata del popup
+
+                    popup.style.top = (window.scrollY + rect.top - (popupHeight/2) + rect.height/2) + 'px';
+                    popup.style.left = (window.scrollX + rect.right + 10) + 'px';
+                    popup.style.display = 'block';
+                });
+            });
+
+            document.getElementById('confirm-yes').addEventListener('click', function() {
+                if (currentUserId) {
+                    window.location.href = `delete_user.php?id=${currentUserId}`;
+                }
+                popup.style.display = 'none';
+            });
+
+            document.getElementById('confirm-no').addEventListener('click', function() {
+                popup.style.display = 'none';
+            });
+
+            // Chiudi il popup se si clicca al di fuori
+            document.addEventListener('click', function(e) {
+                if (popup.style.display === 'block' &&
+                    !popup.contains(e.target) &&
+                    !e.target.closest('.delete-user')) {
+                    popup.style.display = 'none';
+                }
+            });
+        }
+
+        // Inizializza i gestori per il delete
+        document.addEventListener('DOMContentLoaded', setupDeleteHandlers);
     </script>
 </body>
 </html>
