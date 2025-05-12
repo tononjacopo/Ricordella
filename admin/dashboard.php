@@ -87,7 +87,6 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
                      </div>
                 </div>
             </div>
-
             <div class="search-actions">
                 <button type="submit" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
                 <button type="button" class="refresh-btn" id="refreshTable" title="Refresh">
