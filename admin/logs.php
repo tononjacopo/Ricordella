@@ -17,113 +17,253 @@ sort($logFiles, SORT_NATURAL | SORT_FLAG_CASE);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../assets/style/admin.css">
     <link rel="stylesheet" href="../assets/style/font-general.css">
+    <link rel="icon" href="../assets/img/logo-favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .terminal-log-container {
+        main {
             display: flex;
-            flex-wrap: wrap;
-            gap: 2em;
-            min-height: 400px;
-        }
-        .terminal-log {
-            background: #181c20;
-            color: #c3e88d;
-            font-family: 'Fira Mono', monospace, 'Courier New', Courier;
-            font-size: .98em;
-            border-radius: 10px;
-            box-shadow: var(--shadow-md);
-            padding: 1.2em 1em .8em 1em;
-            max-width: 570px;
-            min-width: 340px;
-            min-height: 350px;
-            margin-bottom: 1.5em;
             position: relative;
-            overflow: auto;
+            padding: 0;
+            height: calc(100vh - 120px);
         }
-        .terminal-log .log-title {
-            font-size: 1.01em;
-            color: #fff;
-            margin-bottom: .6em;
-            font-weight: bold;
-            letter-spacing: .01em;
+
+        /* Explorer sidebar */
+        .explorer {
+            width: 250px;
+            background: #252526;
+            color: #cccccc;
+            overflow-y: auto;
+            border-right: 1px solid #1e1e1e;
+            height: 100%;
+            padding: 10px 0;
+        }
+
+        .explorer-header {
+            padding: 0 20px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: #6c757d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .log-files {
+            list-style: none;
+        }
+
+        .log-file {
+            padding: 6px 20px;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: .6em;
+            font-size: 13px;
+            transition: background 0.2s;
         }
+
+        .log-file:hover {
+            background: #2a2d2e;
+        }
+
+        .log-file.active {
+            background: #37373d;
+        }
+
+        .log-file i {
+            margin-right: 8px;
+            color: #75beff;
+        }
+
+        /* Editor area */
+        .editor-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #1e1e1e;
+            position: relative;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #252526;
+            border-bottom: 1px solid #1e1e1e;
+            height: 35px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .tabs::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .tabs::-webkit-scrollbar-thumb {
+            background: #3e3e42;
+        }
+
+        .tab {
+            padding: 0 10px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 13px;
+            color: #cccccc;
+            border-right: 1px solid #1e1e1e;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            min-width: 100px;
+            max-width: 180px;
+            position: relative;
+        }
+
+        .tab.active {
+            background: #1e1e1e;
+            color: #ffffff;
+            border-top: 1px solid #4361ee;
+        }
+
+        .tab-name {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .tab .close {
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            text-align: center;
+            border-radius: 3px;
+            margin-left: 5px;
+            font-size: 12px;
+            visibility: hidden;
+        }
+
+        .tab:hover .close {
+            visibility: visible;
+        }
+
+        .tab .close:hover {
+            background: #3e3e42;
+        }
+
+        /* Editor Content */
+        .editor-content {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .editor-pane {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .editor-pane.active {
+            display: block;
+        }
+
+        .terminal-log {
+            font-family: 'Fira Mono', monospace, 'Courier New', Courier;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #d4d4d4;
+            padding: 10px;
+        }
+
         .terminal-log pre {
             margin: 0;
             white-space: pre-wrap;
             word-break: break-all;
         }
-        .dropdown {
-            min-width: 7em;
-            width: 22em;
-            position: relative;
-            margin-top: 2em;
-            z-index: 99;
-        }
-        .select {
-            background: #181c20;
-            color: #c3e88d;
-            border: 1px solid #6a6a6a;
-            border-radius: 4px;
+
+        /* Highlight colors for log entries */
+        .log-date { color: #569cd6; }
+        .log-info { color: #3ec46d; }
+        .log-warning { color: #ce9178; }
+        .log-error { color: #f14c4c; }
+        .log-debug { color: #9cdcfe; }
+        .log-critical { color: #ff5252; }
+
+        /* Welcome pane when no file is open */
+        .welcome-pane {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 10px;
-            width: 100%;
-            cursor: pointer;
-            transition: background 0.3s;
+            justify-content: center;
+            height: 100%;
+            color: #6c757d;
         }
-        .select:hover{
-            border-color: #29b6f6;
-            box-shadow: 0 0 0.7em #29b6f6;
+
+        .welcome-pane i {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #4361ee;
         }
-        .caret {
-            width: 0;
-            height: 0;
-            border-bottom: 5px solid transparent;
-            border-top: 5px solid transparent;
-            border-left: 6px solid #c3e88d;
-            transition: 0.3s;
-        }
-        .caret-rotate { transform: rotate(+90deg); border-left: 6px solid #29b6f6;}
-        .menu {
-            list-style: none;
-            padding: 0 0.5em;
-            background: #181c20;
-            border-radius: 0.5em;
-            color: #c3e88d;
+
+        /* Refresh button */
+        .refresh-btn {
             position: absolute;
-            top: 3em;
-            left: 0;
-            width: 100%;
-            height: 0;
-            transition: height 300ms cubic-bezier(0.77,0,0.18,1);
-            z-index: 1;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            box-shadow: 0 1px 10px #2228;
-        }
-        .menu.show { height: 200px;}
-        .menu li {
-            padding: .5em .3em;
+            right: 20px;
+            top: 20px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            transition: background .2s;
+            z-index: 10;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .refresh-btn i {
+            font-size: 1.2em;
+        }
+
+        .refresh-btn.spinning i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {transform: rotate(360deg);}
+        }
+
+        /* Scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3e3e42;
             border-radius: 4px;
         }
-        .menu li:hover, .menu li.active {
-            background: #263238;
-            color: #fff;
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4361ee;
         }
-        /* Custom scrollbar come richiesto */
-        .menu::-webkit-scrollbar { width: 6px;}
-        .menu::-webkit-scrollbar-track { background: transparent;}
-        .menu::-webkit-scrollbar-thumb { background: #29b6f6;}
-        .menu::-webkit-scrollbar-thumb:hover { background: #f72585;}
-        .menu::-webkit-scrollbar-thumb:active { background-color: #6a6a6a;}
-        .terminal-log::-webkit-scrollbar { width: 8px;}
-        .terminal-log::-webkit-scrollbar-thumb { background: #29b6f6;}
-        .terminal-log::-webkit-scrollbar-thumb:hover { background: #f72585;}
-        .terminal-log::-webkit-scrollbar-thumb:active { background-color: #6a6a6a;}
     </style>
 </head>
 <body>
@@ -140,62 +280,44 @@ sort($logFiles, SORT_NATURAL | SORT_FLAG_CASE);
         </div>
     </header>
     <main>
-        <h1>System Logs</h1>
-        <div class="dropdown" id="dropdownLogs">
-            <div class="select" id="selectBox">
-                <span id="selectedLabel">Scegli file di log</span>
-                <span class="caret"></span>
+        <!-- Explorer sidebar -->
+        <div class="explorer">
+            <div class="explorer-header">
+                <span>Explorer</span>
             </div>
-            <ul class="menu" id="logMenu">
+            <ul class="log-files">
                 <?php foreach ($logFiles as $file): ?>
-                    <li data-log="<?php echo htmlspecialchars($file); ?>"><?php echo htmlspecialchars($file); ?></li>
+                    <li class="log-file" data-file="<?php echo htmlspecialchars($file); ?>">
+                        <i class="fas fa-file-lines"></i>
+                        <span><?php echo htmlspecialchars($file); ?></span>
+                    </li>
                 <?php endforeach; ?>
             </ul>
         </div>
-        <div class="terminal-log-container" id="logContainer"></div>
+
+        <!-- Editor area -->
+        <div class="editor-area">
+            <!-- Tabs bar -->
+            <div class="tabs" id="editor-tabs"></div>
+
+            <!-- Editor content -->
+            <div class="editor-content" id="editor-content">
+                <div class="welcome-pane">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Seleziona un file di log</h3>
+                    <p>Clicca su un file nella barra laterale per visualizzarlo</p>
+                </div>
+            </div>
+
+            <!-- Refresh button -->
+            <button type="button" class="refresh-btn" id="refresh-logs" title="Aggiorna logs">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+        </div>
     </main>
     <footer>
         <p>&copy; <?php echo date('Y'); ?> Ricordella - Admin Panel</p>
     </footer>
-    <script>
-        // Custom dropdown log selector
-        const selectBox = document.getElementById('selectBox');
-        const caret = selectBox.querySelector('.caret');
-        const menu = document.getElementById('logMenu');
-        const label = document.getElementById('selectedLabel');
-        const logContainer = document.getElementById('logContainer');
-        let openedLogs = {};
 
-        selectBox.addEventListener('click', () => {
-            menu.classList.toggle('show');
-            caret.classList.toggle('caret-rotate');
-        });
-        document.addEventListener('click', e => {
-            if (!selectBox.contains(e.target) && !menu.contains(e.target)) {
-                menu.classList.remove('show');
-                caret.classList.remove('caret-rotate');
-            }
-        });
-        menu.querySelectorAll('li').forEach(li => {
-            li.addEventListener('click', () => {
-                const filename = li.getAttribute('data-log');
-                if (!openedLogs[filename]) {
-                    fetch('read_log.php?file=' + encodeURIComponent(filename))
-                        .then(res => res.text())
-                        .then(data => {
-                            const logDiv = document.createElement('div');
-                            logDiv.className = 'terminal-log';
-                            logDiv.innerHTML = `<span class="log-title"><i class="fa-solid fa-file-lines"></i> ${filename}</span><pre>${data}</pre>`;
-                            logContainer.appendChild(logDiv);
-                            openedLogs[filename] = logDiv;
-                        });
-                }
-                li.classList.add('active');
-                menu.classList.remove('show');
-                caret.classList.remove('caret-rotate');
-                label.textContent = filename;
-            });
-        });
-    </script>
 </body>
 </html>

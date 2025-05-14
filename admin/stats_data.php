@@ -87,13 +87,16 @@ for ($i = 6; $i >= 0; $i--) {
     $dayOffset = ($today - $i + 7) % 7; // Calcola quale giorno della settimana è i giorni fa
     $date = date('Y-m-d', strtotime("-$i days"));
 
-    // Ottieni numero di utenti attivi per quel giorno
+    // Ottieni numero di utenti attivi per quel giorno (creazione o aggiornamento note)
     $stmt = $conn->prepare("
-        SELECT COUNT(DISTINCT id) 
-        FROM users 
-        WHERE DATE(last_login) = ?
+        SELECT COUNT(DISTINCT u.id) 
+        FROM users u
+        LEFT JOIN notes n1 ON u.id = n1.user_id AND DATE(n1.created_at) = ?
+        LEFT JOIN notes n2 ON u.id = n2.user_id AND DATE(n2.updated_at) = ? AND n2.updated_at > n2.created_at
+        WHERE (n1.id IS NOT NULL) 
+           OR (n2.id IS NOT NULL)
     ");
-    $stmt->bind_param('s', $date);
+    $stmt->bind_param('ss', $date, $date);
     $stmt->execute();
     $stmt->bind_result($count);
     $stmt->fetch();
@@ -136,7 +139,7 @@ $stmt->close();
 // === Admin Status ===
 $admins = [];
 $stmt = $conn->prepare("
-    SELECT id, username, created_at, last_login 
+    SELECT id, username, created_at, last_login
     FROM users 
     WHERE role = 'admin'
 ");
@@ -256,7 +259,7 @@ $services = [
     "✅ Server: Online",
     "✅ Database: Online ({$latency}ms)", // Latenza reale del DB
     "✅ API: Online",
-    "✅ Galileo: Online",
+    "✅ Galileo AI: Online",
     "❌ Email: Offline"
 ];
 

@@ -12,6 +12,7 @@ header('Cache-Control: no-store');
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../assets/style/admin.css">
     <link rel="stylesheet" href="../assets/style/font-general.css">
+    <link rel="icon" href="../assets/img/logo-favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -47,11 +48,23 @@ header('Cache-Control: no-store');
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        .kpi-cards { display: flex; gap: 1.2em; margin-bottom: 2.5em; flex-wrap: wrap;}
+        .kpi-cards {
+            display: flex;
+            gap: 1.2em;
+            margin-bottom: 2.5em;
+            flex-wrap: wrap;
+        }
         .kpi-card {
-            background: #fff; border-radius: 1.2em; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            padding: 1.2em 1.3em; min-width: 180px; flex:1; text-align:left;
-            display:flex; flex-direction:column; align-items:flex-start;
+            background: #fff;
+            border-radius: 1.2em;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 1.2em 1.3em;
+            min-width: 180px;
+            flex:1;
+            text-align:left;
+            display:flex;
+            flex-direction:column;
+            align-items:flex-start;
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .kpi-card:hover {
@@ -66,11 +79,23 @@ header('Cache-Control: no-store');
         .kpi-card.yellow .value { color: #eab308;}
         .kpi-card.purple .value { color: #8b5cf6;}
 
-        .charts-row { display: flex; gap:2em; margin-bottom:2em; flex-wrap:wrap;}
+        .charts-row {
+            display: flex;
+            gap:2em;
+            margin-bottom:2em;
+            flex-wrap:wrap;}
         .chart-box {
-            background: #fff; border-radius: 1.2em; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            padding: 1.5em; flex:1; min-width:360px; min-height:340px;
-            display:flex; flex-direction:column; align-items:center; position: relative;
+            background: #fff;
+            border-radius: 1.2em;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 1.5em;
+            flex:1;
+            min-width:360px;
+            min-height:340px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            position: relative;
         }
         .chart-box h3 {
             font-size: 1.1em;
@@ -93,30 +118,13 @@ header('Cache-Control: no-store');
             font-size: 1.2em;
             color: #6b7280;
             pointer-events: none;
-            z-index: 5;
+            z-index: 1;
         }
         .total-users .count {
             display: block;
             font-size: 1.6em;
             font-weight: bold;
             color: #4b5563;
-        }
-
-        .percentage-bar {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70%;
-            height: 4px;
-            background: #e5e7eb;
-            border-radius: 2px;
-            overflow: hidden;
-            z-index: 5;
-        }
-        .percentage-segment {
-            height: 100%;
-            float: left;
         }
 
         .admin-status-box {
@@ -164,12 +172,25 @@ header('Cache-Control: no-store');
         .admin-status.yellow { background: #eab308; }
         .admin-status.red { background: #ef4444; }
 
-        .events-row { display: flex; gap:2em; margin-top:2em; flex-wrap: wrap;}
-        .event-box {
-            background: #fff; border-radius: 1.2em; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            padding: 1.2em; flex:1; min-width:260px;
+        .events-row {
+            display: flex;
+            gap:2em;
+            margin-top:2em;
+            flex-wrap: wrap;
         }
-        .event-box h3 { font-size:1.15em; margin-bottom:.7em; color: #374151;}
+        .event-box {
+            background: #fff;
+            border-radius: 1.2em;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 1.2em;
+            flex:1;
+            min-width:260px;
+        }
+        .event-box h3 {
+            font-size:1.15em;
+            margin-bottom:.7em;
+            color: #374151;
+        }
         .event-box ul {
             font-size:.98em;
             color: #555;
@@ -208,9 +229,18 @@ header('Cache-Control: no-store');
             margin-left: 4px;
             font-weight: 600;
         }
-        .latency.good { background: rgba(22, 163, 74, 0.1); color: #16a34a; }
-        .latency.medium { background: rgba(234, 179, 8, 0.1); color: #eab308; }
-        .latency.high { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+        .latency.good {
+            background: rgba(22, 163, 74, 0.1);
+            color: #16a34a;
+        }
+        .latency.medium {
+            background: rgba(234, 179, 8, 0.1);
+            color: #eab308;
+        }
+        .latency.high {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
 
         /* Settings Panel */
         .settings-panel {
@@ -332,7 +362,7 @@ header('Cache-Control: no-store');
                         Users
                     </div>
                 </div>
-                <div class="percentage-bar" id="percentageBar"></div>
+
             </div>
             <div class="chart-box">
                 <h3>System Performance</h3>
@@ -523,18 +553,6 @@ header('Cache-Control: no-store');
             // Calcola percentuali e totale
             const total = data.data.reduce((a, b) => a + b, 0);
             document.getElementById('totalUsers').querySelector('.count').textContent = total;
-
-            // Aggiorna la barra delle percentuali
-            const percentageBar = document.getElementById('percentageBar');
-            percentageBar.innerHTML = '';
-            data.data.forEach((value, i) => {
-                const pct = (value / total) * 100;
-                const segment = document.createElement('div');
-                segment.className = 'percentage-segment';
-                segment.style.width = pct + '%';
-                segment.style.backgroundColor = colors[i];
-                percentageBar.appendChild(segment);
-            });
 
             // Usa le etichette personalizzate o quelle predefinite
             const customLabels = [

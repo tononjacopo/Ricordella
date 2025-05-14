@@ -76,15 +76,30 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
                         <button type="button" class="clear-btn" onclick="clearInput(this)">×</button>
                     </div>
                 </div>
+                <input type="hidden" name="is_premium" id="is_premium_input" value="<?= $filters['is_premium'] ?? '' ?>">
                 <div>
                     <label for="search_premium">Premium</label>
                     <div class="input-clearable">
-                        <select name="is_premium" id="search_premium">
-                            <option value="">All</option>
-                            <option value="1" <?php if($filters['is_premium'] === '1') echo 'selected'; ?>>Yes</option>
-                            <option value="0" <?php if($filters['is_premium'] === '0') echo 'selected'; ?>>No</option>
-                        </select>
-                     </div>
+
+                        <div class="dropdown">
+                            <div class="select">
+                              <span class="selected">
+                                  <?php
+                                    if (!isset($filters['is_premium'])) echo 'Select';
+                                    else if ($filters['is_premium'] === '1') echo 'Yes';
+                                    else if ($filters['is_premium'] === '0') echo 'No';
+                                    else echo 'All';
+                                  ?>
+                              </span>
+                              <div class="caret"></div>
+                            </div>
+                            <ul class="menu" name="is_premium" id="search_premium">
+                              <li class="<?= !isset($filters['is_premium']) ? 'active-drop' : '' ?>" data-value="">All</li>
+                              <li class="<?= $filters['is_premium'] === '1' ? 'active-drop' : '' ?>" data-value="1">Yes</li>
+                              <li class="<?= $filters['is_premium'] === '0' ? 'active-drop' : '' ?>" data-value="0">No</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="search-actions">
@@ -205,12 +220,15 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
 
     <!-- Popup di conferma eliminazione -->
     <div id="confirm-popup">
-        <p>Sei sicuro di voler eliminare questo utente?</p>
-        <button id="confirm-yes">Sì</button>
-        <button id="confirm-no">No</button>
+        <p>Delete this User?</p>
+        <div>
+            <button id="confirm-yes">Yes</button>
+            <button id="confirm-no">No</button>
+        </div>
     </div>
 
     <script src="../assets/script/admin.js"></script>
     <script src="../assets/script/sort-table-admin.js"></script>
+    <script src="../assets/script/drop-down.js"></script>
 </body>
 </html>

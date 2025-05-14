@@ -64,6 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['role'] = 'user';
                 $_SESSION['is_premium'] = false;
 
+                $user_id = $conn->insert_id;
+                $updateStmt = $conn->prepare("UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?");
+                $updateStmt->bind_param("i", $user_id);
+                $updateStmt->execute();
+                $updateStmt->close();
+
                 // Redirect to user dashboard
                 header("Location: user/dashboard.php");
                 exit;

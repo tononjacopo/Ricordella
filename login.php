@@ -59,6 +59,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['role'] = $user['role'];
                 $_SESSION['is_premium'] = (bool)$user['is_premium'];
 
+                $updateStmt = $conn->prepare("UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?");
+                $updateStmt->bind_param("i", $user['id']);
+                $updateStmt->execute();
+                $updateStmt->close();
+
                 // Reset rate limit on successful login
                 unset($_SESSION[$rate_limit_key]);
 
