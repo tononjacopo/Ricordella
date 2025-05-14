@@ -270,9 +270,9 @@ sort($logFiles, SORT_NATURAL | SORT_FLAG_CASE);
     <header>
         <div class="logo">Ricordella Admin</div>
         <nav>
+            <a href="stats.php">Stats</a>
             <a href="dashboard.php">Users</a>
             <a href="logs.php" class="active">Logs</a>
-            <a href="stats.php">Stats</a>
         </nav>
         <div class="user-info">
             <span>Admin: <?php echo htmlspecialchars($_SESSION['username']); ?></span>

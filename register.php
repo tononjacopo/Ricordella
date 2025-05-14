@@ -1,4 +1,33 @@
 <?php
+
+// Impostazioni durata sessione
+$session_lifetime = 28800; // 8 ore
+$session_idle_time = 1800; // 30 minuti inattività
+
+ini_set('session.gc_maxlifetime', $session_idle_time);
+session_set_cookie_params([
+    'lifetime' => $session_lifetime,
+    'path' => '/',
+    'secure' => isset($_SERVER['HTTPS']),
+    'httponly' => true,
+    'samesite' => 'Lax'
+]);
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Rinnova cookie a ogni richiesta se utente loggato
+if (isset($_SESSION['user_id'])) {
+    setcookie(session_name(), session_id(), [
+        'expires' => time() + $session_lifetime,
+        'path' => '/',
+        'secure' => isset($_SERVER['HTTPS']),
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ]);
+}
+
 require_once 'config/db.php';
 require_once 'utils/functions.php';
 
