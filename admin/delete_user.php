@@ -8,7 +8,7 @@ requireAdmin();
 
 // Check if user ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: dashboard.php");
+    header("Location: user_list.php");
     exit;
 }
 
@@ -21,17 +21,17 @@ $user = getUserById($user_id);
 if (!$user) {
     $_SESSION['admin_message'] = "User not found.";
     $_SESSION['admin_message_type'] = "error";
-    header("Location: dashboard.php");
+    header("Location: user_list.php");
     exit;
 } elseif ($user['id'] === $_SESSION['user_id']) {
     $_SESSION['admin_message'] = "You cannot delete your own account.";
     $_SESSION['admin_message_type'] = "error";
-    header("Location: dashboard.php");
+    header("Location: user_list.php");
     exit;
 } elseif ($user['role'] === 'admin') {
     $_SESSION['admin_message'] = "Cannot delete admin accounts.";
     $_SESSION['admin_message_type'] = "error";
-    header("Location: dashboard.php");
+    header("Location: user_list.php");
     exit;
 }
 
@@ -61,6 +61,6 @@ try {
 }
 
 // Redirect back to dashboard
-header("Location: dashboard.php");
+header("Location: user_list.php");
 exit;
 ?>

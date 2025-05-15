@@ -7,7 +7,7 @@ requireAdmin();
 
 // Check if user ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id']) || !isset($_GET['premium'])) {
-    header("Location: dashboard.php");
+    header("Location: user_list.php");
     exit;
 }
 
@@ -21,7 +21,7 @@ $user = getUserById($user_id);
 if (!$user) {
     $_SESSION['admin_message'] = "User not found.";
     $_SESSION['admin_message_type'] = "error";
-    header("Location: dashboard.php");
+    header("Location: user_list.php");
     exit;
 }
 
@@ -40,6 +40,6 @@ if ($stmt->execute()) {
 $stmt->close();
 
 // Redirect back to dashboard
-header("Location: dashboard.php");
+header("Location: user_list.php");
 exit;
 ?>

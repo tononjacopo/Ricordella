@@ -26,11 +26,11 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Admin Dashboard | Ricordella</title>
+    <title>Users Managment | Ricordella</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../assets/style/dashboard.css">
-    <link rel="stylesheet" href="../assets/style/admin.css">
+    <link rel="stylesheet" href="../assets/style/admin-users.css">
     <link rel="stylesheet" href="../assets/style/font-general.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" href="../assets/img/logo-favicon.ico" type="image/x-icon">
@@ -41,7 +41,7 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
         <div class="logo">Ricordella Admin</div>
         <nav>
             <a href="stats.php">Stats</a>
-            <a href="dashboard.php" class="active">Users</a>
+            <a href="user_list.php" class="active">Users</a>
             <a href="logs.php">Logs</a>
         </nav>
         <div class="user-info">

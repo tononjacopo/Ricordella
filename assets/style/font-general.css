@@ -8,6 +8,7 @@
     --primary-dark: #3a0ca3;
     --secondary: #f72585;
     --background: #f8f9fa;
+    --background-dark: #e5e7eb;
     --surface: #ffffff;
     --text-primary: #2b2d42;
     --text-secondary: #6c757d;
@@ -15,6 +16,7 @@
     --warning: #ff9800;
     --danger: #f44336;
     --border-color: #dee2e6;
+
 
     /* Premium colors */
     --premium: #ffc107;

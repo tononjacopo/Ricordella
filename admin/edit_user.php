@@ -11,7 +11,7 @@ $success = '';
 
 // Check if user ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: dashboard.php");
+    header("Location: user_list.php");
     exit;
 }
 
@@ -24,7 +24,7 @@ $user = getUserById($user_id);
 if (!$user) {
     $_SESSION['admin_message'] = "User not found.";
     $_SESSION['admin_message_type'] = "error";
-    header("Location: dashboard.php");
+    header("Location: user_list.php");
     exit;
 }
 
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $user['role'] = $role;
                     $conn->commit();
 
-                     header("Location: dashboard.php");
+                     header("Location: user_list.php");
                 } else {
                     $error = "Error updating user. Please try again.";
                     $conn->rollback();
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../assets/style/dashboard.css">
-    <link rel="stylesheet" href="../assets/style/admin.css">
+    <link rel="stylesheet" href="../assets/style/admin-users.css">
     <link rel="stylesheet" href="../assets/style/font-general.css">
     <link rel="icon" href="../assets/img/logo-favicon.ico" type="image/x-icon">
 </head>
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <header>
         <div class="logo">Ricordella Admin</div>
         <nav>
-            <a href="dashboard.php">Users</a>
+            <a href="user_list.php">Users</a>
         </nav>
         <div class="user-info">
             <span>Admin: <?php echo htmlspecialchars($_SESSION['username']); ?></span>
@@ -159,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-actions">
                     <button type="submit" class="btn primary">Save Changes</button>
-                    <a href="dashboard.php" class="btn secondary">Cancel</a>
+                    <a href="user_list.php" class="btn secondary">Cancel</a>
                 </div>
             </form>
         </div>

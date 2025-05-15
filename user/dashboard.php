@@ -7,7 +7,7 @@ requireLogin();
 
 // Redirect admin to admin dashboard
 if (isAdmin()) {
-    header("Location: ../admin/dashboard.php");
+    header("Location: ../admin/user_list.php");
     exit;
 }
 

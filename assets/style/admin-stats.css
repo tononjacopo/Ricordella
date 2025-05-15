@@ -119,11 +119,15 @@
         width: 100%;
     }
     .activity-stat {
-        background: #f9fafb;
+        background: var(--background);
         padding: 12px 20px;
         border-radius: 8px;
         text-align: center;
         flex: 1;
+        transition: ease-in-out 0.2s;
+    }
+    .activity-stat:hover{
+        background: #e5e7eb;
     }
     .activity-stat .value {
         display: block;
@@ -507,7 +511,7 @@
         margin-top: auto;
     }
     .view-all-logs:hover {
-        background: #e5e7eb;
+        background: var(--background-dark);
         color: #1f2937;
     }
 

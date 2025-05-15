@@ -35,9 +35,9 @@ $error = '';
 // Check if user is already logged in
 if (isLoggedIn()) {
     if (isAdmin()) {
-        header("Location: admin/dashboard.php");
+        header("Location: admin/stats.php");
     } else {
-        header("Location: user/dashboard.php");
+        header("Location: user/user_list.php");
     }
     exit;
 }
@@ -92,9 +92,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 unset($_SESSION[$rate_limit_key]);
 
                 if ($user['role'] === 'admin') {
-                    header("Location: admin/dashboard.php");
+                    header("Location: admin/stats.php");
                 } else {
-                    header("Location: user/dashboard.php");
+                    header("Location: user/user_list.php");
                 }
                 exit;
             } else {

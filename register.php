@@ -37,9 +37,9 @@ $error = '';
 if (isLoggedIn()) {
     // Redirect based on role
     if (isAdmin()) {
-        header("Location: admin/dashboard.php");
+        header("Location: admin/user_list.php");
     } else {
-        header("Location: user/dashboard.php");
+        header("Location: user/user_list.php");
     }
     exit;
 }
@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $updateStmt->close();
 
                 // Redirect to user dashboard
-                header("Location: user/dashboard.php");
+                header("Location: user/user_list.php");
                 exit;
             } else {
                 $error = "Registration failed. Please try again.";

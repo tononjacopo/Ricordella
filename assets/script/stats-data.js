@@ -527,7 +527,7 @@
                 latency: 45 // Valore reale dal backend
             },
             {
-                name: 'Storage',
+                name: 'API',
                 icon: 'fa-hard-drive',
                 status: 'online',
                 latency: null

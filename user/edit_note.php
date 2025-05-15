@@ -11,7 +11,7 @@ $success = '';
 
 // Check if note ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: dashboard.php");
+    header("Location: user_list.php");
     exit;
 }
 
@@ -22,7 +22,7 @@ $note = getNoteById($note_id);
 
 // Check if the note exists and belongs to the user
 if (!$note || $note['user_id'] != $_SESSION['user_id']) {
-    header("Location: dashboard.php");
+    header("Location: user_list.php");
     exit;
 }
 

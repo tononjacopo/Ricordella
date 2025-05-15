@@ -10,7 +10,7 @@ header('Cache-Control: no-store');
     <title>Analytics | Ricordella Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../assets/style/admin.css">
+    <link rel="stylesheet" href="../assets/style/admin-users.css">
     <link rel="stylesheet" href="../assets/style/admin-stats.css">
     <link rel="stylesheet" href="../assets/style/font-general.css">
     <link rel="icon" href="../assets/img/logo-favicon.ico" type="image/x-icon">
@@ -22,7 +22,7 @@ header('Cache-Control: no-store');
         <div class="logo">Ricordella Admin</div>
         <nav>
             <a href="stats.php" class="active">Stats</a>
-            <a href="dashboard.php">Users</a>
+            <a href="user_list.php">Users</a>
             <a href="logs.php">Logs</a>
         </nav>
         <div class="user-info">

@@ -287,17 +287,9 @@ $latency = round((microtime(true) - $start_db_time) * 1000); // in ms
 
 // === Stato servizi ===
 $services = [
-    "✅ Server: Online",
     "✅ Database: Online ({$latency}ms)", // Latenza reale del DB
-    "✅ API: Online",
-    "✅ Galileo AI: Online",
-    "❌ Email: Offline"
 ];
 
-// Controlla se il DB è lento
-if ($latency > 100) {
-    $services[1] = "⚠️ Database: Slow ({$latency}ms)";
-}
 
 echo json_encode([
     "kpi" => [

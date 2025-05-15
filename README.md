@@ -44,36 +44,63 @@ https://tononjacopo.com/ricordella
 
 ```plaintext
 Ricordella/
-  ├── config/
-  │   └── db.php              # Configurazione database
-  ├── utils/
-  │   └── functions.php       # Funzioni di utilità
-  ├── style/
-  │   ├── dashboard.css       # Stile per dashboard
-  │   ├── admin.css           # Stile per area admin
-  │   ├── font-general.css    # Stile dei font
-  │   └── form-login-and-register.css  # Stile per form
-  ├── script/
-  │   └── check-same-password.js # Validazione password
-  ├── media/
-  │   ├── img/                # Immagini
-  │   └── fonts/              # Font
-  ├── user/
-  │   ├── dashboard.php       # Dashboard utente
-  │   ├── create_note.php     # Creazione note
-  │   ├── edit_note.php       # Modifica note
-  │   ├── delete_note.php     # Eliminazione note
-  │   ├── daily_notes.php     # Note del giorno
-  │   └── shared_notes.php    # Note condivise
-  ├── admin/
-  │   ├── dashboard.php       # Dashboard admin
-  │   ├── edit_user.php       # Gestione utenti
-  │   ├── toggle_premium.php  # Attivazione/disattivazione premium
-  │   └── delete_user.php     # Eliminazione utenti
-  ├── index.html              # Pagina di benvenuto
-  ├── login.php               # Pagina di login
-  ├── register.php            # Pagina di registrazione
-  └── logout.php              # Gestione logout
+├── admin/
+│   ├── dashboard.php
+│   ├── delete_user.php
+│   ├── edit_user.php
+│   ├── get_log.php
+│   ├── logs.php
+│   ├── read_logs.php
+│   ├── stats.php
+│   ├── stats_data.php
+│   └── toggle_premium.php
+├── assets/
+│   ├── img/
+│   │   ├── alert.png
+│   │   ├── logo.png
+│   │   ├── logo-favicon.ico
+│   │   ├── logo-nobg.png
+│   │   ├── wallpaper.png
+│   │   └── wallpaper-blur.png
+│   ├── screenshot/
+│   │   ├── home.png
+│   │   └── register.png
+│   ├── script/
+│   │   ├── admin.js
+│   │   ├── check-same-pass.js
+│   │   ├── drop-down.js
+│   │   ├── logs.js
+│   │   └── sort-table-admin.js
+│   └── style/
+│       ├── admin.css
+│       ├── admin-stats.css
+│       ├── dashboard.css
+│       ├── default-admin.css
+│       ├── default-user.css
+│       ├── drop-down.css
+│       ├── font-general.css
+│       ├── form-login-reg.css
+│       ├── index-welcome.css
+│       ├── note-form.css
+│       └── shared-notes.css
+├── logs/
+│   └── example.log
+├── user/
+│   ├── create_note.php
+│   ├── daily_notes.php
+│   ├── dashboard.php
+│   ├── delete_note.php
+│   ├── edit_note.php
+│   └── shared_notes.php
+├── utils/
+│   └── functions.php
+├── .gitignore
+├── index.html
+├── login.php
+├── logout.php
+├── README.md
+├── register.php
+└── structure.txt
 ```
 
 ## 🛠️ Technologies Used

@@ -38,7 +38,7 @@ function requireLogin() {
 function requireAdmin() {
     requireLogin();
     if (!isAdmin()) {
-        header("Location: /php_ricordella/user/dashboard.php");
+        header("Location: /php_ricordella/user/user_list.php");
         exit;
     }
 }
