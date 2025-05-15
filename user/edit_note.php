@@ -71,30 +71,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../assets/style/dashboard.css">
     <link rel="stylesheet" href="../assets/style/font-general.css">
-
+    <link rel="stylesheet" href="../assets/style/default-user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../assets/img/logo-favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <div class="logo">Ricordella</div>
+<header>
+    <div class="logo">Ricordella</div>
         <nav>
-            <a href="dashboard.php">My Notes</a>
-            <a href="daily_notes.php">Today's Notes</a>
-            <a href="shared_notes.php">Shared Notes</a>
-            <?php if (isPremium()): ?>
-            <a href="create_note.php" class="premium">Create Note</a>
-            <?php else: ?>
-            <a href="create_note.php">Create Note</a>
-            <?php endif; ?>
+            <a href="dashboard.php" <?php echo basename($_SERVER['PHP_SELF']) === 'dashboard.php' ? 'class="active"' : ''; ?>>
+                My Notes
+            </a>
+            <a href="daily_notes.php" <?php echo basename($_SERVER['PHP_SELF']) === 'daily_notes.php' ? 'class="active"' : ''; ?>>
+                Today's Notes
+            </a>
+            <a href="shared_notes.php" <?php echo basename($_SERVER['PHP_SELF']) === 'shared_notes.php' ? 'class="active"' : ''; ?>>
+                Shared Notes
+            </a>
+            <a href="create_note.php" <?php echo basename($_SERVER['PHP_SELF']) === 'create_note.php' ? 'class="active"' : ''; ?>>
+                Create Note
+            </a>
         </nav>
-        <div class="user-info">
-            <span>Hello, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
-            <?php if (isPremium()): ?>
-            <span class="premium-badge">⭐ Premium</span>
-            <?php endif; ?>
-            <a href="../logout.php" class="logout">Logout</a>
-        </div>
-    </header>
+    <div class="user-info">
+        <span>Hello, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+        <?php if (isPremium()): ?>
+            <span class="premium-badge"><i class="fas fa-crown"></i> Premium</span>
+        <?php endif; ?>
+        <a href="../logout.php" class="logout" title="Logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+    </div>
+</header>
 
     <main>
         <h1>Edit Note</h1>
@@ -107,37 +114,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="alert success"><?php echo $success; ?></div>
         <?php endif; ?>
 
+
         <form method="POST" class="note-form">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" required value="<?php echo htmlspecialchars($note['title']); ?>">
+                <input type="text" id="title" name="title" class="form-control" required value="<?php echo htmlspecialchars($note['title']); ?>">
             </div>
 
             <div class="form-group">
                 <label for="content">Content</label>
-                <textarea id="content" name="content" rows="6" required><?php echo htmlspecialchars($note['content']); ?></textarea>
+                <textarea id="content" name="content" class="form-control" rows="8" required><?php echo htmlspecialchars($note['content']); ?></textarea>
             </div>
 
             <div class="form-group">
                 <label for="priority">Priority</label>
-                <select id="priority" name="priority">
-                    <option value="Bassa" <?php echo $note['priority'] === 'Bassa' ? 'selected' : ''; ?>>Low</option>
-                    <option value="Normale" <?php echo $note['priority'] === 'Normale' ? 'selected' : ''; ?>>Normal</option>
-                    <option value="Alta" <?php echo $note['priority'] === 'Alta' ? 'selected' : ''; ?> <?php echo !isPremium() ? 'disabled' : ''; ?>>High <?php echo !isPremium() ? '(Premium)' : ''; ?></option>
-                    <option value="Immediata" <?php echo $note['priority'] === 'Immediata' ? 'selected' : ''; ?> <?php echo !isPremium() ? 'disabled' : ''; ?>>Immediate <?php echo !isPremium() ? '(Premium)' : ''; ?></option>
-                </select>
+                <div class="dropdown-select">
+                    <select id="priority" name="priority" class="form-control">
+                        <option value="Bassa" <?php echo $note['priority'] === 'Bassa' ? 'selected' : ''; ?>>Low</option>
+                        <option value="Normale" <?php echo $note['priority'] === 'Normale' ? 'selected' : ''; ?>>Normal</option>
+                        <option value="Alta" <?php echo $note['priority'] === 'Alta' ? 'selected' : ''; ?> <?php echo !isPremium() ? 'disabled' : ''; ?> class="<?php echo !isPremium() ? 'premium-feature' : ''; ?>">
+                            High
+                        </option>
+                        <option value="Immediata" <?php echo $note['priority'] === 'Immediata' ? 'selected' : ''; ?> <?php echo !isPremium() ? 'disabled' : ''; ?> class="<?php echo !isPremium() ? 'premium-feature' : ''; ?>">
+                            Immediate
+                        </option>
+                    </select>
+                </div>
             </div>
 
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="is_shared" name="is_shared" <?php echo $note['is_shared'] ? 'checked' : ''; ?> <?php echo !isPremium() ? 'disabled' : ''; ?>>
-                <label for="is_shared">Share this note with other users <?php echo !isPremium() ? '(Premium feature)' : ''; ?></label>
+            <?php if (isPremium()): ?>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="share-option" name="is_shared" <?php echo $note['is_shared'] ? 'checked' : ''; ?>>
+                    <label for="share-option">Share this note with other users</label>
+                </div>
+
+                <div id="permission-options" style="display:<?php echo $note['is_shared'] ? 'block' : 'none'; ?>;">
+                    <div class="form-group">
+                        <label>Sharing Management</label>
+                        <p class="note">You can manage who this note is shared with from the <a href="manage_shares.php">Manage Sharing</a> page.</p>
+                    </div>
+                </div>
             </div>
+            <?php else: ?>
+            <div class="form-group premium-feature">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="share-option" name="is_shared" disabled <?php echo $note['is_shared'] ? 'checked' : ''; ?>>
+                    <label for="share-option">Share this note with other users</label>
+                </div>
+            </div>
+            <?php endif; ?>
 
             <div class="form-actions">
-                <button type="submit" class="btn primary">Update Note</button>
-                <a href="dashboard.php" class="btn secondary">Cancel</a>
+                <button type="submit" class="btn primary">
+                    <i class="fas fa-save"></i> Update Note
+                </button>
+                <a href="dashboard.php" class="btn secondary">
+                    <i class="fas fa-times"></i> Cancel
+                </a>
             </div>
         </form>
+
+        <?php if (!isPremium() && ($note['priority'] === 'Alta' || $note['priority'] === 'Immediata' || $note['is_shared'])): ?>
+        <div class="alert info" style="margin-top: 20px;">
+            <i class="fas fa-info-circle"></i> This note uses premium features. Upgrade to Premium to modify these settings!
+        </div>
+        <?php endif; ?>
     </main>
 
     <footer>

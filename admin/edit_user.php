@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Edit User | Admin | Ricordella</title>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../assets/style/dashboard.css">
+    <link rel="stylesheet" href="../assets/style/default-admin.css">
     <link rel="stylesheet" href="../assets/style/admin-users.css">
     <link rel="stylesheet" href="../assets/style/font-general.css">
     <link rel="icon" href="../assets/img/logo-favicon.ico" type="image/x-icon">

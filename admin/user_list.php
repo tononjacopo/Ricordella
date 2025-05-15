@@ -29,7 +29,7 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
     <title>Users Managment | Ricordella</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../assets/style/dashboard.css">
+    <link rel="stylesheet" href="../assets/style/default-admin.css">
     <link rel="stylesheet" href="../assets/style/admin-users.css">
     <link rel="stylesheet" href="../assets/style/font-general.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -46,7 +46,9 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
         </nav>
         <div class="user-info">
             <span>Admin: <?php echo htmlspecialchars($_SESSION['username']); ?></span>
-            <a href="../logout.php" class="logout">Logout</a>
+            <a href="../logout.php" class="logout" title="Logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
         </div>
     </header>
 

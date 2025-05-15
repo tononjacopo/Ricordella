@@ -38,7 +38,7 @@ function requireLogin() {
 function requireAdmin() {
     requireLogin();
     if (!isAdmin()) {
-        header("Location: /php_ricordella/user/user_list.php");
+        header("Location: /php_ricordella/user/dashboard.php");
         exit;
     }
 }
@@ -108,6 +108,44 @@ function getSharedNotes($userId) {
     }
     $stmt->close();
     return $notes;
+}
+
+/**
+ * Get notes shared by a user
+ */
+function getSharedByMe($userId) {
+    global $conn;
+
+    $sql = "SELECT n.id, n.title, n.is_shared, u.id AS shared_with_id, u.username AS shared_with, ns.permission 
+            FROM notes n
+            JOIN note_shares ns ON n.id = ns.note_id
+            JOIN users u ON ns.user_id = u.id
+            WHERE n.user_id = ? AND n.is_shared = 1
+            ORDER BY n.title, u.username";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $shared_notes = [];
+    while ($row = $result->fetch_assoc()) {
+        if (!isset($shared_notes[$row['id']])) {
+            $shared_notes[$row['id']] = [
+                'id' => $row['id'],
+                'title' => $row['title'],
+                'shared_with' => []
+            ];
+        }
+
+        $shared_notes[$row['id']]['shared_with'][] = [
+            'id' => $row['shared_with_id'],
+            'username' => $row['shared_with'],
+            'permission' => $row['permission']
+        ];
+    }
+
+    return $shared_notes;
 }
 
 /**

@@ -15,7 +15,7 @@ sort($logFiles, SORT_NATURAL | SORT_FLAG_CASE);
     <title>Logs | Ricordella Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../assets/style/admin-users.css">
+    <link rel="stylesheet" href="../assets/style/default-admin.css">
     <link rel="stylesheet" href="../assets/style/admin-logs.css">
     <link rel="stylesheet" href="../assets/style/font-general.css">
     <link rel="icon" href="../assets/img/logo-favicon.ico" type="image/x-icon">
@@ -31,7 +31,9 @@ sort($logFiles, SORT_NATURAL | SORT_FLAG_CASE);
         </nav>
         <div class="user-info">
             <span>Admin: <?php echo htmlspecialchars($_SESSION['username']); ?></span>
-            <a href="../logout.php" class="logout">Logout</a>
+            <a href="../logout.php" class="logout" title="Logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
         </div>
     </header>
     <main>
