@@ -39,6 +39,10 @@ sort($logFiles, SORT_NATURAL | SORT_FLAG_CASE);
         <div class="explorer">
             <div class="explorer-header">
                 <span>Explorer</span>
+                <!-- Refresh button -->
+                <button type="button" class="refresh-btn" id="refresh-logs" title="Aggiorna logs">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
             </div>
             <ul class="log-files">
                 <?php foreach ($logFiles as $file): ?>
@@ -64,10 +68,6 @@ sort($logFiles, SORT_NATURAL | SORT_FLAG_CASE);
                 </div>
             </div>
 
-            <!-- Refresh button -->
-            <button type="button" class="refresh-btn" id="refresh-logs" title="Aggiorna logs">
-                <i class="fas fa-sync-alt"></i>
-            </button>
         </div>
     </main>
     <footer>

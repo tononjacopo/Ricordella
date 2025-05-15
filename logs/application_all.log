@@ -1,0 +1,42 @@
+[2025-05-14 08:12:03] [INFO] AppServer - Application started successfully
+[2025-05-14 08:12:04] [INFO] UserService - User authentication system initialized
+[2025-05-14 08:12:05] [DEBUG] DatabaseConnector - Connected to database with 3 active connections
+[2025-05-14 08:13:15] [INFO] UserService - User Jacob-webdev logged in successfully
+[2025-05-14 08:14:23] [WARNING] SecurityModule - Multiple failed login attempts detected for user: anonymous
+[2025-05-14 08:15:45] [ERROR] ApiController - Failed to process request: Invalid parameters provided
+[2025-05-14 08:15:46] [DEBUG] ApiController - Request payload: {"action":"getData","params":{"id":null}}
+[2025-05-14 08:16:12] [INFO] CacheManager - Cache refreshed with 124 items
+[2025-05-14 08:17:35] [WARNING] DatabaseConnector - Query took longer than expected (2.5s): SELECT * FROM large_table WHERE timestamp > '2025-05-13'
+[2025-05-14 08:18:42] [ERROR] FileService - Could not access file: /data/uploads/document.pdf (Permission denied)
+[2025-05-14 08:19:01] [INFO] UserService - User Jacob-webdev downloaded report #28945
+[2025-05-14 08:20:15] [CRITICAL] SystemMonitor - High memory usage detected: 89.5%
+[2025-05-14 08:21:03] [INFO] AppServer - Scheduled maintenance starting in 10 minutes
+[2025-05-14 08:22:56] [DEBUG] ApiController - Response time: 342ms for endpoint: /api/v1/stats
+[2025-05-14 08:23:21] [INFO] NotificationService - Email sent to user jacob-webdev@example.com
+[2025-05-14 08:24:10] [INFO] ReportGenerator - Weekly report generation started
+[2025-05-14 08:24:39] [DEBUG] ReportGenerator - Collected 4,322 entries for report
+[2025-05-14 08:25:02] [INFO] ReportGenerator - Report #11234 successfully saved to /reports/weekly_11234.pdf
+[2025-05-14 08:26:17] [ERROR] UserService - Failed login attempt for user: unknown_user
+[2025-05-14 08:27:08] [WARNING] SecurityModule - Brute-force pattern detected from IP: 192.168.1.85
+[2025-05-14 08:28:33] [INFO] AppServer - Performing routine health check
+[2025-05-14 08:28:35] [DEBUG] AppServer - Health check passed for all modules
+[2025-05-14 08:29:12] [ERROR] DatabaseConnector - Lost connection to database (timeout)
+[2025-05-14 08:29:17] [INFO] DatabaseConnector - Reconnection attempt #1
+[2025-05-14 08:29:20] [INFO] DatabaseConnector - Reconnected successfully
+[2025-05-14 08:30:04] [INFO] FileService - Backup created: /backups/db_backup_2025-05-14_0830.sql
+[2025-05-14 08:31:22] [DEBUG] UserService - Session refreshed for user: Jacob-webdev
+[2025-05-14 08:32:14] [WARNING] AppServer - Unusual response latency: 1042ms
+[2025-05-14 08:33:47] [ERROR] ApiController - Internal server error on endpoint /api/v1/user/settings
+[2025-05-14 08:33:47] [DEBUG] ApiController - Stack trace logged to /logs/errors_2025-05-14.log
+[2025-05-14 08:34:10] [INFO] AppServer - System entering maintenance mode
+[2025-05-14 08:34:13] [INFO] AppServer - All services paused for maintenance
+[2025-05-14 08:36:00] [DEBUG] MaintenanceService - Verifying integrity of core modules
+[2025-05-14 08:38:17] [INFO] MaintenanceService - Module integrity check passed
+[2025-05-14 08:39:55] [INFO] AppServer - Maintenance complete, resuming operations
+[2025-05-14 08:40:11] [INFO] UserService - User session restored for Jacob-webdev
+[2025-05-14 08:41:45] [DEBUG] MetricsCollector - Collected CPU usage: 17.3%
+[2025-05-14 08:43:00] [WARNING] SystemMonitor - Low disk space on /dev/sda1 (remaining: 2.1GB)
+[2025-05-14 08:44:20] [INFO] CacheManager - Evicted 34 expired cache entries
+[2025-05-14 08:45:33] [INFO] NotificationService - Push notification sent to 134 users
+[2025-05-14 08:46:12] [INFO] ReportGenerator - Daily summary report completed
+[2025-05-14 08:47:57] [DEBUG] ReportGenerator - Generated summary: {"logins": 238, "errors": 7, "warnings": 4}

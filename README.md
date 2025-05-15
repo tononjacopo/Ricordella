@@ -3,7 +3,7 @@
 The project is a note-taking web application where users can create, manage, and prioritize notes with customizable titles, texts, and deadlines, providing an intuitive and efficient way to organize personal tasks and reminders.
 ## 🌐 Live Demo
 
-https://tononjacopo.com/ricordella
+https://ricordella.tononjacopo.com/
 
 ## 🔥 Features
 

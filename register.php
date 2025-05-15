@@ -39,7 +39,7 @@ if (isLoggedIn()) {
     if (isAdmin()) {
         header("Location: admin/user_list.php");
     } else {
-        header("Location: user/user_list.php");
+        header("Location: user/dashboard.php");
     }
     exit;
 }
@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $updateStmt->close();
 
                 // Redirect to user dashboard
-                header("Location: user/user_list.php");
+                header("Location: user/dashboard.php");
                 exit;
             } else {
                 $error = "Registration failed. Please try again.";

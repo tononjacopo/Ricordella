@@ -1,14 +1,14 @@
-2025-05-14T08:12:03.456Z [INFO] AppServer - Application started successfully
-2025-05-14T08:12:04.234Z [INFO] UserService - User authentication system initialized
-2025-05-14T08:12:05.123Z [DEBUG] DatabaseConnector - Connected to database with 3 active connections
-2025-05-14T08:13:15.678Z [INFO] UserService - User Jacob-webdev logged in successfully
-2025-05-14T08:14:23.456Z [WARN] SecurityModule - Multiple failed login attempts detected for user: anonymous
-2025-05-14T08:15:45.234Z [ERROR] ApiController - Failed to process request: Invalid parameters provided
-2025-05-14T08:15:46.456Z [DEBUG] ApiController - Request payload: {"action":"getData","params":{"id":null}}
-2025-05-14T08:16:12.789Z [INFO] CacheManager - Cache refreshed with 124 items
-2025-05-14T08:17:35.123Z [WARN] DatabaseConnector - Query took longer than expected (2.5s): SELECT * FROM large_table WHERE timestamp > '2025-05-13'
-2025-05-14T08:18:42.456Z [ERROR] FileService - Could not access file: /data/uploads/document.pdf (Permission denied)
-2025-05-14T08:19:01.234Z [INFO] UserService - User Jacob-webdev downloaded report #28945
-2025-05-14T08:20:15.678Z [CRITICAL] SystemMonitor - High memory usage detected: 89.5%
-2025-05-14T08:21:03.123Z [INFO] AppServer - Scheduled maintenance starting in 10 minutes
-2025-05-14T08:22:56.789Z [DEBUG] ApiController - Response time: 342ms for endpoint: /api/v1/stats
+[2025-05-14 08:12:03] [INFO] AppServer - Application started successfully
+[2025-05-14 08:12:04] [INFO] UserService - User authentication system initialized
+[2025-05-14 08:12:05] [DEBUG] DatabaseConnector - Connected to database with 3 active connections
+[2025-05-14 08:13:15] [INFO] UserService - User Jacob-webdev logged in successfully
+[2025-05-14 08:14:23] [WARNING] SecurityModule - Multiple failed login attempts detected for user: anonymous
+[2025-05-14 08:15:45] [ERROR] ApiController - Failed to process request: Invalid parameters provided
+[2025-05-14 08:15:46] [DEBUG] ApiController - Request payload: {"action":"getData","params":{"id":null}}
+[2025-05-14 08:16:12] [INFO] CacheManager - Cache refreshed with 124 items
+[2025-05-14 08:17:35] [WARNING] DatabaseConnector - Query took longer than expected (2.5s): SELECT * FROM large_table WHERE timestamp > '2025-05-13'
+[2025-05-14 08:18:42] [ERROR] FileService - Could not access file: /data/uploads/document.pdf (Permission denied)
+[2025-05-14 08:19:01] [INFO] UserService - User Jacob-webdev downloaded report #28945
+[2025-05-14 08:20:15] [CRITICAL] SystemMonitor - High memory usage detected: 89.5%
+[2025-05-14 08:21:03] [INFO] AppServer - Scheduled maintenance starting in 10 minutes
+[2025-05-14 08:22:56] [DEBUG] ApiController - Response time: 342ms for endpoint: /api/v1/stats
