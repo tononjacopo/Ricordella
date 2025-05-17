@@ -27,7 +27,7 @@ function isPremium() {
  */
 function requireLogin() {
     if (!isLoggedIn()) {
-        header("Location: /php_ricordella/login.php");
+        header("Location: ../login.php");
         exit;
     }
 }
@@ -38,7 +38,7 @@ function requireLogin() {
 function requireAdmin() {
     requireLogin();
     if (!isAdmin()) {
-        header("Location: /php_ricordella/user/user.php");
+        header("Location: ../user/user.php");
         exit;
     }
 }
@@ -238,7 +238,7 @@ function getFilteredUsers($filters, $sort_column, $sort_order) {
 }
 
 function logError($message) {
-    $log_file = __DIR__ . '/../logs/errors.log';
+    $log_file = __DIR__ . '/../logs/error.log';
     $date = date('Y-m-d H:i:s');
     $formatted_message = "[$date] $message\n";
     file_put_contents($log_file, $formatted_message, FILE_APPEND);
