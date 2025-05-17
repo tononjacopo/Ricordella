@@ -1,5 +1,5 @@
 <?php
-require_once '../utils/functions.php';
+require_once 'functions.php';
 requireAdmin();
 if (!isset($_GET['file']) || !preg_match('/^[\w\-.]+\.log$/', $_GET['file'])) exit('File not allowed');
 $path = realpath(__DIR__ . '/../logs/' . $_GET['file']);

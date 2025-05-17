@@ -8,7 +8,7 @@ requireLogin();
 
 // Check if note ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: user_list.php");
+    header("Location: user.php");
     exit;
 }
 
@@ -22,7 +22,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
     // Note doesn't exist or doesn't belong to the user
-    header("Location: user_list.php");
+    header("Location: user.php");
     exit;
 }
 
@@ -33,6 +33,6 @@ $stmt->execute();
 $stmt->close();
 
 // Redirect back to dashboard
-header("Location: user_list.php");
+header("Location: user.php");
 exit;
 ?>

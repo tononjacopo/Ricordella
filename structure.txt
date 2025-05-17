@@ -1,20 +1,18 @@
 Ricordella/
 ├── admin/
-│   ├── dashboard.php
 │   ├── delete_user.php
 │   ├── edit_user.php
-│   ├── get_log.php
 │   ├── logs.php
-│   ├── read_logs.php
 │   ├── stats.php
 │   ├── stats_data.php
-│   └── toggle_premium.php
+│   └── user_list.php
 ├── assets/
 │   ├── img/
 │   │   ├── alert.png
 │   │   ├── logo.png
 │   │   ├── logo-favicon.ico
 │   │   ├── logo-nobg.png
+│   │   ├── ricordella_logo.jpg
 │   │   ├── wallpaper.png
 │   │   └── wallpaper-blur.png
 │   ├── screenshot/
@@ -25,11 +23,13 @@ Ricordella/
 │   │   ├── check-same-pass.js
 │   │   ├── drop-down.js
 │   │   ├── logs.js
-│   │   └── sort-table-admin.js
+│   │   ├── note-actions.js
+│   │   ├── sort-table-admin.js
+│   │   └── stats-data.js
 │   └── style/
-│       ├── admin.css
+│       ├── admin-logs.css
 │       ├── admin-stats.css
-│       ├── dashboard.css
+│       ├── admin-users.css
 │       ├── default-admin.css
 │       ├── default-user.css
 │       ├── drop-down.css
@@ -37,22 +37,31 @@ Ricordella/
 │       ├── form-login-reg.css
 │       ├── index-welcome.css
 │       ├── note-form.css
-│       └── shared-notes.css
+│       ├── shared-notes.css
+│       └── user.css
 ├── config/
 │   └── db.php
 ├── database/
 │   └── scheme.sql
 ├── logs/
+│   ├── app.log
+│   ├── application_all.log
 │   └── example.log
 ├── user/
 │   ├── create_note.php
 │   ├── daily_notes.php
-│   ├── dashboard.php
 │   ├── delete_note.php
 │   ├── edit_note.php
-│   └── shared_notes.php
+│   ├── shared_notes.php
+│   └── user.php
 ├── utils/
-│   └── functions.php
+│   ├── edit_shared_note.php
+│   ├── functions.php
+│   ├── get_log.php
+│   ├── read_logs.php
+│   ├── search_users.php
+│   ├── share_action.php
+│   └── toggle_premium.php
 ├── .gitignore
 ├── index.html
 ├── login.php

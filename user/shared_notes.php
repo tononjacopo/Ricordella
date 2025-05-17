@@ -69,7 +69,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'change_permission' && isset($
     <title>Shared Notes | Ricordella</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../assets/style/dashboard.css">
+    <link rel="stylesheet" href="../assets/style/user.css">
     <link rel="stylesheet" href="../assets/style/default-user.css">
     <link rel="stylesheet" href="../assets/style/font-general.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -79,7 +79,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'change_permission' && isset($
 <header>
     <div class="logo">Ricordella</div>
         <nav>
-            <a href="dashboard.php" <?php echo basename($_SERVER['PHP_SELF']) === 'dashboard.php' ? 'class="active"' : ''; ?>>
+            <a href="user.php" <?php echo basename($_SERVER['PHP_SELF']) === 'user.php' ? 'class="active"' : ''; ?>>
                 My Notes
             </a>
             <a href="daily_notes.php" <?php echo basename($_SERVER['PHP_SELF']) === 'daily_notes.php' ? 'class="active"' : ''; ?>>
@@ -137,8 +137,12 @@ if (isset($_GET['action']) && $_GET['action'] === 'change_permission' && isset($
                             <div class="priority-indicator"></div>
                             <div class="note-header">
                                 <h3><?php echo htmlspecialchars($note['title']); ?></h3>
-                                <div class="note-info">
-                                    <span class="shared-by">By: <?php echo htmlspecialchars($note['username']); ?></span>
+                                <div class="note-actions">
+                                    <?php if ($note['permission'] === 'edit'): ?>
+                                    <a href="../utils/edit_shared_note.php?id=<?php echo $note['id']; ?>" class="action-btn edit-btn" title="Edit Note">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="note-content">

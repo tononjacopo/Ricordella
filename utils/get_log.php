@@ -1,6 +1,6 @@
 <?php
 require_once '../config/db.php';
-require_once '../utils/functions.php';
+require_once 'functions.php';
 requireAdmin();
 
 // Sanitize and validate file parameter

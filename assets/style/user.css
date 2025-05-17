@@ -359,53 +359,48 @@ textarea.form-control {
 }
 
 /* Delete Confirmation Popup */
+/* Popup di conferma */
 #confirm-popup {
     display: none;
-    position: absolute;
+    position: fixed;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    padding: 1rem;
-    z-index: 1000;
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.15);
+    z-index: 100;
+    width: 150px;
 }
-
 #confirm-popup p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-weight: 500;
-}
-
-#confirm-popup div {
     display: flex;
-    gap: 0.5rem;
-    justify-content: flex-end;
+    justify-content: center;
+    margin: 0 0 10px 0;
+    font-size: 14px;
 }
-
-#confirm-popup button {
-    padding: 0.375rem 0.75rem;
-    border: none;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
+#confirm-popup div{
+    display: flex;
+    justify-content: center;
 }
 
 #confirm-yes {
-    background-color: #f44336;
+    background: var(--danger);
     color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: ease-in-out 0.2s;
 }
-
-#confirm-yes:hover {
-    background-color: #d32f2f;
+#confirm-yes:hover{
+    background: #bf1406;
 }
-
 #confirm-no {
-    background-color: #e0e0e0;
-    color: #333;
-}
-
-#confirm-no:hover {
-    background-color: #bdbdbd;
+    background: #f0f0f0;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 /* Checkbox styling */
@@ -449,15 +444,6 @@ textarea.form-control {
 .checkbox-group label {
     margin-bottom: 0;
     cursor: pointer;
-}
-
-/* Permission options */
-#permission-options {
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.02);
-    border-radius: 0.5rem;
-    border: 1px solid var(--border-color);
 }
 
 /* Form actions */
@@ -605,10 +591,10 @@ textarea.form-control {
 }
 
 .note-modal-header {
-    padding: 1.25rem;
+    padding: 0.8rem 20px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -622,7 +608,7 @@ textarea.form-control {
 .note-modal-close {
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: var(--text-secondary);
     cursor: pointer;
     padding: 0.25rem;

@@ -7,6 +7,12 @@ main {
     width: 100%;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 /* Header */
 header {
     background-color: var(--surface);
@@ -101,6 +107,7 @@ footer {
     color: var(--text-secondary);
     font-size: 0.875rem;
     border-top: 1px solid var(--border-color);
+    margin-top: auto;
 }
 
 /* Responsive header for mobile */

@@ -199,7 +199,7 @@ $users = getFilteredUsers($filters, $sort_column, $sort_order); // Implementa qu
                             <td class="actions">
                                 <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="action-btn" title="Edit"><i class="fa-solid fa-pen-to-square" style="color:#2196f3"></i></a>
                                 <?php if ($user['role'] !== 'admin'): ?>
-                                <a href="toggle_premium.php?id=<?php echo $user['id']; ?>&premium=<?php echo $user['is_premium'] ? '0' : '1'; ?>" class="action-btn toggle-premium-btn" title="<?php echo $user['is_premium'] ? 'Remove Premium' : 'Add Premium'; ?>">
+                                <a href="../utils/toggle_premium.php?id=<?php echo $user['id']; ?>&premium=<?php echo $user['is_premium'] ? '0' : '1'; ?>" class="action-btn toggle-premium-btn" title="<?php echo $user['is_premium'] ? 'Remove Premium' : 'Add Premium'; ?>">
                                     <i class="fa-solid fa-crown" style="color: gold;"></i>
                                     <span class="premium-icon <?php echo $user['is_premium'] ? 'premium-remove' : 'premium-add'; ?>">
                                         <i class="fa-solid <?php echo $user['is_premium'] ? 'fa-minus' : 'fa-plus'; ?>"></i>
