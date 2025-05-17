@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         refreshBtn.classList.add('spinning');
 
         // Fetch file content
-        fetch(`get_log.php?file=${encodeURIComponent(fileName)}`)
+        fetch(`../utils/get_log.php?file=${encodeURIComponent(fileName)}`)
             .then(response => {
                 if (!response.ok) throw new Error('File not found');
                 return response.text();
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const fileName = activeFile;
             refreshBtn.classList.add('spinning');
             
-            fetch(`get_log.php?file=${encodeURIComponent(fileName)}`)
+            fetch(`../utils/get_log.php?file=${encodeURIComponent(fileName)}`)
                 .then(response => response.text())
                 .then(content => {
                     const pane = document.querySelector(`.editor-pane[data-file="${fileName}"] .terminal-log pre`);
