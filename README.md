@@ -7,29 +7,29 @@ https://ricordella.tononjacopo.com/
 
 ## 📸 Screenshots
 
-### 🔹 Homepage
+### 🔹 Homepage user
 
-<img src="https://github.com/tononjacopo/Ricordella/blob/2ca0b4302368f48289e51ecc98f933e4074c91be/assets/screenshot/notes.png" width="700">
+<img src="https://github.com/tononjacopo/Ricordella/blob/dfef71f6d31ef4894e0056f27daee522d35fa749/assets/screenshot/notes.png" width="700">
 
-*Main screen of the project.*
+*Main screen of the project for users.*
 
-### 🔹 register Section
+### 🔹 Share Section
 
-<img src="https://github.com/tononjacopo/Ricordella/blob/2ca0b4302368f48289e51ecc98f933e4074c91be/assets/screenshot/share.png" width="700">
+<img src="https://github.com/tononjacopo/Ricordella/blob/dfef71f6d31ef4894e0056f27daee522d35fa749/assets/screenshot/share.png" width="700">
 
-*Register form for users.*
+*SHare page form for users.*
 
-### 🔹 Notes Page
+### 🔹 Admin stats page
 
-<img src="https://github.com/tononjacopo/Ricordella/blob/2ca0b4302368f48289e51ecc98f933e4074c91be/assets/screenshot/data.png" width="700">
+<img src="https://github.com/tononjacopo/Ricordella/blob/dfef71f6d31ef4894e0056f27daee522d35fa749/assets/screenshot/data.png" width="700">
 
-*Detailed view of the Ricordella offerings.*
+*Detailed view of the Ricordella Admin section.*
 
-### 🔹 Notes Creation
+### 🔹 Admin logs page
 
-<img src="https://github.com/tononjacopo/Ricordella/blob/2ca0b4302368f48289e51ecc98f933e4074c91be/assets/screenshot/logs.png" height="400">
+<img src="https://github.com/tononjacopo/Ricordella/blob/dfef71f6d31ef4894e0056f27daee522d35fa749/assets/screenshot/logs.png" height="400">
 
-*Detailed view on how to create a new note.*
+*History logs of the application.*
 
 
 ## 🗁 Project Structure
