@@ -1,6 +1,6 @@
 # 📒 Ricordella - Full-stack project
 
-The project is a note-taking web application where users can create, manage, and prioritize notes with customizable titles, texts, and deadlines, providing an intuitive and efficient way to organize personal tasks and reminders.
+**Ricordella** is a full-stack web application designed for efficient personal note management. It allows users to create, organize, and share notes seamlessly, offering an intuitive interface optimized for various devices.
 ## 🌐 Live Demo
 
 https://ricordella.tononjacopo.com/
@@ -105,14 +105,6 @@ Ricordella/
 ├── register.php
 └── structure.txt
 ```
-
-Certainly! Here's an enhanced and professional English version of the README for **Ricordella**, your full-stack note-taking web application:
-
----
-
-# 📝 Ricordella
-
-**Ricordella** is a full-stack web application designed for efficient personal note management. It allows users to create, organize, and share notes seamlessly, offering an intuitive interface optimized for various devices.
 
 ---
 
